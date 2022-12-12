@@ -1,7 +1,7 @@
 <template>
   Soy el Sign Up
 
-  <form action="submit">
+  <form action="submit" @submit.prevent="signUp">
     <h1>TodoIron App</h1>
     <p>Register to be more efficient with your tasks!</p>
     <input
@@ -14,6 +14,7 @@
     <br />
     <input
       type="password"
+      v-model="password"
       name="password"
       id="password"
       placeholder="Enter your password"
@@ -23,15 +24,25 @@
 </template>
 
 <script>
-import { mapStores } from "pinia";
+import { mapStores } from 'pinia';
+import userStore from '../stores/user.js';  
 
 export default {
-  methods: {},
+ 
   data() {
     return {
       email: "",
+      password: "",
     };
   },
-  computed: {},
+  computed: {
+     
+   ...mapStores(userStore),  
+  },
+  methods: {
+    signUp() {
+      this.userStore.signUp(this.email, this.password);
+    },
+  },
 };
 </script>
