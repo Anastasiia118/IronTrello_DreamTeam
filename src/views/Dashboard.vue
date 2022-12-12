@@ -1,11 +1,10 @@
 <template>
-  <RouterView/>
+    Dashboard
 </template>
-
 
 <script>
 export default {
 
 }
-</script>
 
+</script>
