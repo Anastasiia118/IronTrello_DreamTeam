@@ -1,6 +1,6 @@
 <template>
   Dashboard
-  <button @click="login"></button>
+  <button @click="login">Login!</button>
 </template>
 
 <script>
@@ -9,6 +9,7 @@ import { mapStores } from "pinia";
 
 export default {
   computed: {
+    //esto hay que mirarlo, userStores daba error
     ...mapStores(""),
   },
   methods: {
