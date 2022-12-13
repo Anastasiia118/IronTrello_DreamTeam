@@ -11,11 +11,13 @@
       </div>
       
       <!-- <button type="submit" @click="takeTasks">Take Tasks</button> -->
-      <button type="submit" @click="isActive">+ Add New Task</button>
+      <button type="submit" @click="viewNews">+ Add New Task</button>
       <br> <br>
+      <div v-if="viewNew === true">
       <textarea v-model="title" name="textarea" id="textarea" cols="30" rows="3" placeholder="Enter the text of your taks"></textarea>
       <br> <br>
       <button type="submit" @click="createTask(title)">Add</button>
+    </div>
     </div>
   </div>
   <div v-else>
@@ -34,12 +36,13 @@ export default {
     ...mapStores(tasksStore),
     ...mapStores(userStore),
 
-    
+   
   },
   data() {
     return {
       tasks: [],
       title: "",
+      viewNew: false,
     };
   },
   methods: {
@@ -54,7 +57,15 @@ export default {
       const response2 = await this.tasksStore.createTask(this.userStore.user.id,title,"0")
     console.log("33bfbbf8-aa44-4c18-9fc3-3a2a8262b6c6")
     const response3 = await this.takeTasks()
+    },
+    viewNews() {
+      
+      if (this.viewNew === false) {
+      this.viewNew = true
+    } else if (this.viewNew === true) {
+      this.viewNew = false
     }
+    }, 
   },
   components: {
     TaskItem,
