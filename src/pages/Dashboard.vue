@@ -3,17 +3,15 @@
     <h1>Dashboard</h1>
     <div>
       <h2>Columna de To do</h2>
-      <div>
-        <TaskItem :task="this.tasksStore.tasks[0]"/>
-      </div>
-       <div v-for="(task,index) in this.tasksStore.tasks">
+      <div v-for="(task,index) in this.tasksStore.tasks">
        <TaskItem :task="task"/>
       </div> 
       <div>
         
       </div>
       
-      <button type="submit" @click="takeTasks">Take Tasks</button>
+      <!-- <button type="submit" @click="takeTasks">Take Tasks</button> -->
+      <button type="submit" @click="createTask">Create New Task</button>
     </div>
   </div>
   <div v-else>
@@ -37,6 +35,7 @@ export default {
   data() {
     return {
       tasks: null,
+      
     };
   },
   methods: {
@@ -46,6 +45,12 @@ export default {
       const response = await this.tasksStore.fetchTasks(this.userStore.user.id);
      
     },
+   async createTask() {
+      console.log("entro en dashboard createTask")
+      const response2 = await this.tasksStore.createTask("33bfbbf8-aa44-4c18-9fc3-3a2a8262b6c6","soy un nuevo","1")
+    console.log("salgo de dashboard create task")
+    const response3 = await this.takeTasks()
+    }
   },
   components: {
     TaskItem,

@@ -28,6 +28,7 @@ export default defineStore("tasks", {
     },
 
     async createTask(userId,title,status) {
+      console.log("entro en task.js createTask")
       const response = await supabase
       .from("tasks")
       .insert({
