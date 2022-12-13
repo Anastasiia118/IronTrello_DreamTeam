@@ -1,12 +1,17 @@
 <template>
 Soy el Auth <br>
-<!-- <router-link :to="/Auth/signup">Sign up</router-link> -->
 <RouterView />
 
 </template>
 
 <script>
+import SignIn from '../components/SignIn.vue';
+import SignUp from '../components/SignUp.vue';
+
 export default {
-    
+    components: {
+        SignIn,
+        SignUp,
+    },
 }
 </script>

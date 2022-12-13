@@ -40,10 +40,17 @@
      ...mapStores(userStore),  
     },
     methods: {
-      signIn() {
+      async signIn() {
         console.log("y ahora?")
-        this.userStore.signIn(this.email, this.password);
-       
+       const response = await this.userStore.signIn(this.email, this.password);
+       //if el return es error (-1)
+       console.log(typeof response)
+       console.log(response)
+       if (response === 0) {
+        this.$router.push("/")
+       } else if (response === -1) {
+        alert("error!!")
+       }
         
       },
     },
