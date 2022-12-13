@@ -3,8 +3,15 @@
     <h1>Dashboard</h1>
     <div>
       <h2>Columna de To do</h2>
-      <TaskItem />
-      <TaskItem />
+      <div>
+        <TaskItem :task="this.tasksStore.tasks[0]"/>
+      </div>
+       <div v-for="(task,index) in this.tasksStore.tasks">
+       <TaskItem :task="task"/>
+      </div> 
+      <div>
+        
+      </div>
       
       <button type="submit" @click="takeTasks">Take Tasks</button>
     </div>
