@@ -18,11 +18,13 @@ export default defineStore("tasks", {
         .from("tasks")
 
         .select("*")
+        .eq("user_id", "667dc7f9-a5bd-47d0-9c07-1a8c156edc2b")
 
         .order("id", { ascending: false });
 
       this.tasks = tasks;
       console.log(tasks);
+    
     },
 
     async createTask(userId,title,status) {

@@ -13,12 +13,12 @@
 
 <script>
 import { mapStores } from "pinia";
-import taskStore from "../stores/tasks.js";
+import tasksStore from "../stores/tasks.js";
 import TaskItem from "../components/TaskItem.vue";
 
 export default {
   computed: {
-    ...mapStores(taskStore),
+    ...mapStores(tasksStore),
   },
   data() {
     return {
@@ -28,10 +28,10 @@ export default {
   methods: {
     async takeTasks() {
       console.log("entro en tasks")
-      //const responses = await this.taskStore.fetchTasks();
-      //console.log(response);
-      tasks = await this.taskStore.tasks
-      console.log(tasks)
+      const response = await this.tasksStore.fetchTasks();
+      console.log(response);
+     /*  tasks = await this.tasksStore.tasks
+      console.log(tasks) */
     },
   },
   components: {
