@@ -20,7 +20,7 @@ import userStore from "../stores/user.js";
 
 export default {
   computed: {
-    ...mapStores(taskStore),
+    ...mapStores(tasksStore),
     ...mapStores(userStore),
   },
   data() {
