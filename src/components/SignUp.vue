@@ -21,6 +21,8 @@
     />
     <button>Sign Up!</button>
   </form>
+  <div>Already signed up?</div>
+  <router-link to="/Auth/signin"> Go to sign in! </router-link>
 </template>
 
 <script>

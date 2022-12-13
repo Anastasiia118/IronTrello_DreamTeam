@@ -44,14 +44,15 @@ export default defineStore("user", {
         //si el user no existe - que salga para registrarse
         // añadir el last sign in
       },
-    persist: {
-      enabled: true,
-      strategies: [
-        {
-          key: "user",
-          storage: localStorage,
-        },
-      ],
-    },
+
+  },
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: "user",
+        storage: localStorage,
+      },
+    ],
   },
 });

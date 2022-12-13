@@ -1,5 +1,6 @@
 <template>
 Soy el Auth <br>
+
 <RouterView />
 
 </template>
