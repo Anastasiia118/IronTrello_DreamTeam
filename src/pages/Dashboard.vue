@@ -11,7 +11,11 @@
       </div>
       
       <!-- <button type="submit" @click="takeTasks">Take Tasks</button> -->
-      <button type="submit" @click="createTask">Create New Task</button>
+      <button type="submit" @click="isActive">+ Add New Task</button>
+      <br> <br>
+      <textarea v-model="title" name="textarea" id="textarea" cols="30" rows="3" placeholder="Enter the text of your taks"></textarea>
+      <br> <br>
+      <button type="submit" @click="createTask(title)">Add</button>
     </div>
   </div>
   <div v-else>
@@ -34,31 +38,32 @@ export default {
   },
   data() {
     return {
-      tasks: null,
-      
+      tasks: [],
+      title: "",
     };
   },
   methods: {
     async takeTasks() {
       console.log("entro en Taketasks")
       console.log(this.userStore.user.id)
-      const response = await this.tasksStore.fetchTasks(this.userStore.user.id);
+      const response = await this.tasksStore.fetchTasks();
      
     },
-   async createTask() {
+   async createTask(title) {
       console.log("entro en dashboard createTask")
-      const response2 = await this.tasksStore.createTask("33bfbbf8-aa44-4c18-9fc3-3a2a8262b6c6","soy un nuevo","1")
-    console.log("salgo de dashboard create task")
+      const response2 = await this.tasksStore.createTask(this.userStore.user.id,title,"0")
+    console.log("33bfbbf8-aa44-4c18-9fc3-3a2a8262b6c6")
     const response3 = await this.takeTasks()
     }
   },
   components: {
     TaskItem,
   },
-  beforeMount() {
+  mounted() {
     console.log("before_mounted!");
     this.takeTasks();
-   // this.userStore.fetchUser();
-  }
+  //hacer el loading
+
+  } 
 };
 </script>
