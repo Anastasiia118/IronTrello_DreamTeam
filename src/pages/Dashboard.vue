@@ -4,6 +4,8 @@
     <div>
       <h2>Columna de To do</h2>
       <TaskItem />
+      <TaskItem />
+      
       <button type="submit" @click="takeTasks">Take Tasks</button>
     </div>
   </div>
@@ -22,6 +24,8 @@ export default {
   computed: {
     ...mapStores(tasksStore),
     ...mapStores(userStore),
+
+    
   },
   data() {
     return {
@@ -30,15 +34,19 @@ export default {
   },
   methods: {
     async takeTasks() {
-      console.log("entro en tasks")
-      const response = await this.tasksStore.fetchTasks();
-      console.log(response);
-     /*  tasks = await this.tasksStore.tasks
-      console.log(tasks) */
+      console.log("entro en Taketasks")
+      console.log(this.userStore.user.id)
+      const response = await this.tasksStore.fetchTasks(this.userStore.user.id);
+     
     },
   },
   components: {
     TaskItem,
   },
+  beforeMount() {
+    console.log("before_mounted!");
+    this.takeTasks();
+   // this.userStore.fetchUser();
+  }
 };
 </script>

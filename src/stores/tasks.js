@@ -6,24 +6,24 @@ import { supabase } from "../supabase";
 export default defineStore("tasks", {
   state() {
     return {
-      tasks: null,
+      tasks: {},
     };
   },
 
   actions: {
-    async fetchTasks() {
+    async fetchTasks(userId) {
       console.log("entro en fetchtasks.js");
       const { data: tasks } = await supabase
 
         .from("tasks")
 
         .select("*")
-        .eq("user_id", "667dc7f9-a5bd-47d0-9c07-1a8c156edc2b")
+        //.eq("user_id", "33bfbbf8-aa44-4c18-9fc3-3a2a8262b6c6")
+        .eq("user_id", userId)
 
         .order("id", { ascending: false });
 
-      this.tasks = tasks;
-      console.log(tasks);
+      this.tasks = tasks;    
     
     },
 
