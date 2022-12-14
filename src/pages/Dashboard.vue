@@ -5,7 +5,7 @@
       <h2>Columna de To do</h2>
       <div v-for="(task, index) in this.tasksStore.tasks">
         <TaskItem :task="task" />
-        <button type="submit" @click="deleteTask(task.id)">Delete</button>
+        <!-- <button type="submit" @click="deleteTask(task.id)">Delete</button>
         <button type="submit" @click="viewEdits">
           Edit task
         </button>
@@ -19,14 +19,13 @@
           rows="3"
         ></textarea>
         <button type="submit"  @click="editTask(task.id, editTitle)">Edit</button>
-        </div>
+        </div> -->
         <br />
 
         <br />
       </div>
       <div></div>
 
-      <!-- <button type="submit" @click="takeTasks">Take Tasks</button> -->
       <button type="submit" @click="viewNews">+ Add New Task</button>
       <br />
       <br />
@@ -45,7 +44,6 @@
       </div>
     </div>
   </div>
-  <!-- <div v-else> -->
   <router-view/>
 </template>
 
@@ -88,7 +86,7 @@ export default {
         this.viewNew = false;
       }
     },
-    viewEdits() {
+    /* viewEdits() {
       if (this.viewEdit === false) {
         this.viewEdit = true;
       } else if (this.viewEdit === true) {
@@ -105,7 +103,7 @@ export default {
       const rs = await this.tasksStore.updateTask(taskId, editTitle);
       console.log("voy a take tasks otra vez");
       const res = await this.takeTasks();
-    },
+    }, */
   },
   components: {
     TaskItem,

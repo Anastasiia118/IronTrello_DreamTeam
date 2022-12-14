@@ -40,6 +40,8 @@ export default defineStore("tasks", {
       .from("tasks")
       .delete()
       .match({'id': taskId})
+      console.log("voy a hacer fetch en delete")
+      const response2 = await this.fetchTasks();
     },
     async updateTask(taskId, editTitle) {
       console.log("entro en updateTask tasks js")
@@ -47,10 +49,8 @@ export default defineStore("tasks", {
       .from("tasks")
       .update({'title' : editTitle})
       .match({'id': taskId})
-      //.select()
+      const response2 = await this.fetchTasks();
       
-      console.log("dentro de update task")
-      //console.log(this.tasksStore.tasks)
     },
   },
 
