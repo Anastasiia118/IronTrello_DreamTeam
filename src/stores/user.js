@@ -21,29 +21,32 @@ export default defineStore("user", {
         email: email,
         password: password,
       });
-      if (error){
-        /* alert("You are already signed up! Just log in and that's it!") */
-        this.alreadyRegistered = true
-        this.$router.push("/Auth/signin")
-      };
-      
+      if (error) {
+        this.alreadyRegistered = true;
+        this.$router.push("/Auth/signin");
+      }
     },
     async signIn(email, password) {
-        console.log("hola")
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email: email,
-          password: password,
-        })
-        console.log("es error", error)
-        if (error) {
-          return -2;
-        } if (data) {
-            this.user = data.user;
-            console.log("this-router",this.$router)
-            this.$router.push("/")
-        }
-      },
-
+      console.log("hola");
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+      console.log("es error", error);
+      if (error) {
+        return -2;
+      }
+      if (data) {
+        this.user = data.user;
+        console.log("this-router", this.$router);
+        this.$router.push("/");
+      }
+    },
+    async signOut() {
+      const { error } = await supabase.auth.signOut();
+      this.user = null;
+      this.$router.push("/Auth/signin")
+    },
   },
   persist: {
     enabled: true,
