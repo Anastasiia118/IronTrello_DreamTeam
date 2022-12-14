@@ -2,8 +2,9 @@
 <div> {{task.title}} </div>
 <div> {{task.id}}</div>
 <div> Status: 
-  <span v-if="task.status === 1"> Done</span>
-  <span v-if="task.status === 0"> To Do</span></div>
+  <span v-if="task.status === 1"> Ongoing</span>
+  <span v-if="task.status === 0"> To Do</span>
+  <span v-if="task.status === 2"> Done</span></div>
 <button type="submit" @click="deleteTask">Delete inside</button>
 <button type="sumbit" @click="viewEdits">Edit T inside</button>
 <div v-if="viewEdit === true">
