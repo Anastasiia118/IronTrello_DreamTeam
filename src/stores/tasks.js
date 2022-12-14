@@ -40,16 +40,19 @@ export default defineStore("tasks", {
       .from("tasks")
       .delete()
       .match({'id': taskId})
-    }
+    },
+    async updateTask(taskId, editTitle) {
+      console.log("entro en updateTask tasks js")
+      const {error} = await supabase
+      .from("tasks")
+      .update({'title' : editTitle})
+      .match({'id': taskId})
+      //.select()
+      
+      console.log("dentro de update task")
+      //console.log(this.tasksStore.tasks)
+    },
   },
 
-  async updateTask(taskId) {
-    console.log("entro en updateTask tasks js")
-    const response = await supabase
-    .from("tasks")
-    .update({'title' : "me he actualizado"})
-    .eq({'id': taskId})
-    .execute()
-  }
-
+  
 });

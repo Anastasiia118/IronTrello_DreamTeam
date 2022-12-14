@@ -6,7 +6,9 @@
       <div v-for="(task, index) in this.tasksStore.tasks">
         <TaskItem :task="task" />
         <button type="submit" @click="deleteTask(task.id)">Delete</button>
-        <button type="submit" @click="editTask(task.id)">Edit</button>
+        <button type="submit" @click="editTask(task.id,editTitle)">Edit</button>
+        <br>
+        <textarea v-model="editTitle" name="`${task.id}`" id="`${task.id}`" cols="30" rows="3"></textarea>
         <br />
 
         <br />
@@ -53,6 +55,7 @@ export default {
       tasks: [],
       title: "",
       viewNew: false,
+      editTitle: ""
     };
   },
   methods: {
@@ -78,11 +81,12 @@ export default {
       const response4 = await this.tasksStore.deleteTask(taskId);
       const response3 = await this.takeTasks();
     },
-    async editTask(taskId) {
-      console.log("entro en edit dashboard")
-      const rs = await this.tasksStore.updateTask(taskId)
+    async editTask(taskId,editTitle) {
+      console.log("entro en edit dashboard y el title:")
+      console.log(editTitle)
+      const rs = await this.tasksStore.updateTask(taskId,editTitle);
       console.log("voy a take tasks otra vez")
-      const res= await this.takeTasks()
+      const res= await this.takeTasks();
     }
   },
   components: {
