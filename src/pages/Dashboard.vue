@@ -6,9 +6,20 @@
       <div v-for="(task, index) in this.tasksStore.tasks">
         <TaskItem :task="task" />
         <button type="submit" @click="deleteTask(task.id)">Delete</button>
-        <button type="submit" @click="editTask(task.id,editTitle)">Edit</button>
-        <br>
-        <textarea v-model="editTitle" name="`${task.id}`" id="`${task.id}`" cols="30" rows="3"></textarea>
+        <button type="submit" @click="viewEdits">
+          Edit task
+        </button>
+        <br />
+        <div v-if="viewEdit === true">
+        <textarea
+          v-model="editTitle"
+          name="`${task.id}`"
+          id="`${task.id}`"
+          cols="30"
+          rows="3"
+        ></textarea>
+        <button type="submit"  @click="editTask(task.id, editTitle)">Edit</button>
+        </div>
         <br />
 
         <br />
@@ -55,7 +66,8 @@ export default {
       tasks: [],
       title: "",
       viewNew: false,
-      editTitle: ""
+      editTitle: "",
+      viewEdit: false,
     };
   },
   methods: {
@@ -77,17 +89,24 @@ export default {
         this.viewNew = false;
       }
     },
+    viewEdits() {
+      if (this.viewEdit === false) {
+        this.viewEdit = true;
+      } else if (this.viewEdit === true) {
+        this.viewEdit = false;
+      }
+    },
     async deleteTask(taskId) {
       const response4 = await this.tasksStore.deleteTask(taskId);
       const response3 = await this.takeTasks();
     },
-    async editTask(taskId,editTitle) {
-      console.log("entro en edit dashboard y el title:")
-      console.log(editTitle)
-      const rs = await this.tasksStore.updateTask(taskId,editTitle);
-      console.log("voy a take tasks otra vez")
-      const res= await this.takeTasks();
-    }
+    async editTask(taskId, editTitle) {
+      console.log("entro en edit dashboard y el title:");
+      console.log(editTitle);
+      const rs = await this.tasksStore.updateTask(taskId, editTitle);
+      console.log("voy a take tasks otra vez");
+      const res = await this.takeTasks();
+    },
   },
   components: {
     TaskItem,
