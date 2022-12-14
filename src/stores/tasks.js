@@ -6,7 +6,7 @@ import { supabase } from "../supabase";
 export default defineStore("tasks", {
   state() {
     return {
-      tasks: {},
+      tasks: [],
     };
   },
 
@@ -50,10 +50,27 @@ export default defineStore("tasks", {
       .from("tasks")
       .update({'title' : editTitle})
       .match({'id': taskId})
+      console.log("voy a fetchtasks")
       const response2 = await this.fetchTasks();
+      console.log("response de updatetask",response2)
+      
+      
       
     },
   },
-
+getters: {
+  todoArr() {
+    return this.tasks.filter((task) => task.status === 0);
+    
+  },
+  ongoingArr() {
+    const rep = this.tasks.filter((task) => task.status === 1);
+    return rep;
+  },
+  doneArr() {
+    const rep = this.tasks.filter((task) => task.status === 2);
+    return rep;
+  },
+},
   
 });
