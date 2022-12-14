@@ -35,24 +35,24 @@ export default defineStore("tasks", {
     },
 
     async deleteTask(taskId) {
-      console.log("entro en delete de taskjs")
+      //console.log("entro en delete de taskjs")
       const response = await supabase
       .from("tasks")
       .delete()
       .match({'id': taskId})
-      console.log("voy a hacer fetch en delete")
+     // console.log("voy a hacer fetch en delete")
       const response2 = await this.fetchTasks();
     },
     
     async updateTask(taskId, editTitle) {
-      console.log("entro en updateTask tasks js")
+     // console.log("entro en updateTask tasks js")
       const {error} = await supabase
       .from("tasks")
       .update({'title' : editTitle})
       .match({'id': taskId})
-      console.log("voy a fetchtasks")
+      //console.log("voy a fetchtasks")
       const response2 = await this.fetchTasks();
-      console.log("response de updatetask",response2)
+      
       
       
       
