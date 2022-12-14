@@ -21,6 +21,7 @@
     />
     <button>Log In!</button>
   </form>
+  <div v-if="errorOccured">Oops! Your email or password is wrong!</div>
   <div>No registered yet?</div>
   <router-link to="/Auth/signup"> Go to sign up! </router-link>
 </template>
@@ -34,6 +35,7 @@ export default {
     return {
       email: "",
       password: "",
+      errorOccured: false,
     };
   },
   computed: {
@@ -43,6 +45,9 @@ export default {
     async signIn() {
       console.log("y ahora?");
       const response = await this.userStore.signIn(this.email, this.password);
+      if( response === -2){
+        this.errorOccured = true;
+      }
     },
   },
 };

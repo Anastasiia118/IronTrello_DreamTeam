@@ -30,9 +30,9 @@ export default defineStore("user", {
           email: email,
           password: password,
         })
-        console.log("es data",data, error)
+        console.log("es error", error)
         if (error) {
-          throw error;
+          return -2;
         } if (data) {
             this.user = data.user;
             console.log("this-router",this.$router)
