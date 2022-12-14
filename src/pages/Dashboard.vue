@@ -13,8 +13,8 @@
         <div v-if="viewEdit === true">
         <textarea
           v-model="editTitle"
-          name="`${task.id}`"
-          id="`${task.id}`"
+          name="edittext"
+          id="edittext"
           cols="30"
           rows="3"
         ></textarea>
