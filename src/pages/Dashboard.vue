@@ -1,14 +1,11 @@
 <template>
-  <div v-if="this.userStore.user">
+  <div>
     <h1>Dashboard</h1>
     <div>
       <h2>Columna de To do</h2>
       <div v-for="(task,index) in this.tasksStore.tasks">
        <TaskItem :task="task"/>
       </div> 
-      <div>
-        
-      </div>
       
       <!-- <button type="submit" @click="takeTasks">Take Tasks</button> -->
       <button type="submit" @click="isActive">+ Add New Task</button>
@@ -18,9 +15,8 @@
       <button type="submit" @click="createTask(title)">Add</button>
     </div>
   </div>
-  <div v-else>
+  <!-- <div v-else> -->
   <router-view/>
-  </div>
 </template>
 
 <script>
@@ -66,4 +62,5 @@ export default {
 
   } 
 };
+
 </script>

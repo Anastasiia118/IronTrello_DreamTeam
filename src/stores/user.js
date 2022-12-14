@@ -30,19 +30,14 @@ export default defineStore("user", {
           email: email,
           password: password,
         })
-        console.log(data, error)
+        console.log("es data",data, error)
         if (error) {
-          //throw error;
-          return -1;
+          throw error;
         } if (data) {
             this.user = data.user;
-            console.log(data.user)
-            console.log("voy a hacer el router")
-            return 0;
-            //this.$router.push("/")
+            console.log("this-router",this.$router)
+            this.$router.push("/")
         }
-        //si el user no existe - que salga para registrarse
-        // añadir el last sign in
       },
 
   },
