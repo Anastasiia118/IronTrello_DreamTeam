@@ -3,7 +3,6 @@
 <div> Status: 
   <span v-if="task.status === 1"> Done</span>
   <span v-if="task.status === 0"> To Do</span></div>
-  <br>
 </template>
 
 <script>
