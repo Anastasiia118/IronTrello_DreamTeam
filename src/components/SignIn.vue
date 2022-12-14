@@ -43,14 +43,6 @@ export default {
     async signIn() {
       console.log("y ahora?");
       const response = await this.userStore.signIn(this.email, this.password);
-      //if el return es error (-1)
-      console.log(typeof response);
-      console.log(response);
-      if (response === 0) {
-        this.$router.push("/Dashboard");
-      } else if (response === -1) {
-        alert("error!!");
-      }
     },
   },
 };

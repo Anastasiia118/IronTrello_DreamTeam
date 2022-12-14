@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.userStore.user">
+  <div>
     <h1>Dashboard</h1>
     <div>
       <h2>Columna de To do</h2>
@@ -45,9 +45,8 @@
       </div>
     </div>
   </div>
-  <div v-else>
-    <router-view />
-  </div>
+  <!-- <div v-else> -->
+  <router-view/>
 </template>
 
 <script>
@@ -117,4 +116,5 @@ export default {
     //hacer el loading
   },
 };
+
 </script>
