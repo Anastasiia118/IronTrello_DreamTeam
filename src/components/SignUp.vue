@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     signUp() {
-      this.userStore.signUp(this.email, this.password);
+       this.userStore.signUp(this.email, this.password);
     },
   },
 };

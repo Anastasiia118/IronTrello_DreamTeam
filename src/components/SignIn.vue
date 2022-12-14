@@ -3,6 +3,7 @@
 
   <form action="submit" @submit.prevent="signIn">
     <h1>TodoIron App</h1>
+    <div v-if="userStore.alreadyRegistered">You are already registered!</div>
     <p>SIGN IN</p>
     <input
       type="email"

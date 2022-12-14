@@ -7,7 +7,7 @@ export default defineStore("user", {
   state() {
     return {
       user: null,
-      
+      alreadyRegistered: false,
     };
   },
 
@@ -21,7 +21,11 @@ export default defineStore("user", {
         email: email,
         password: password,
       });
-      if (error) throw error;
+      if (error){
+        /* alert("You are already signed up! Just log in and that's it!") */
+        this.alreadyRegistered = true
+        this.$router.push("/Auth/signin")
+      };
       
     },
     async signIn(email, password) {
