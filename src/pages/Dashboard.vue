@@ -30,7 +30,7 @@
       </div> -->
       <div class="columna">
         <h2>To do</h2>
-        <div v-for="(task, index) in todoArr">
+        <div v-for="(task, index) in tasksStore.todoArr">
           <TaskItem :task="task" />
           <br />
           <br />
@@ -55,7 +55,7 @@
       </div>
       <div class="columna">
         <h2>Ongoing</h2>
-        <div v-for="(task, index) in ongoingArr">
+        <div v-for="(task, index) in tasksStore.ongoingArr">
           <TaskItem :task="task" />
           <br />
           <br />
@@ -80,7 +80,7 @@
       </div>
       <div class="columna">
         <h2>Done</h2>
-        <div v-for="(task, index) in doneArr">
+        <div v-for="(task, index) in tasksStore.doneArr">
           <TaskItem :task="task" />
           <br />
           <br />
@@ -113,53 +113,36 @@ import { mapStores } from "pinia";
 import tasksStore from "../stores/tasks.js";
 import TaskItem from "../components/TaskItem.vue";
 import userStore from "../stores/user.js";
-import tasks from "../stores/tasks.js";
+//import tasks from "../stores/tasks.js";
 import AppHeader from "../components/AppHeader.vue";
 
 export default {
   computed: {
     ...mapStores(tasksStore),
     ...mapStores(userStore),
-    todoArr() {
-      console.log(this.tasks);
-      const rep = this.tasks.filter((task) => task.status === 0);
-      return rep;
-    },
-    ongoingArr() {
-      console.log(this.tasks);
-      const rep = this.tasks.filter((task) => task.status === 1);
-      return rep;
-    },
-    doneArr() {
-      console.log(this.tasks);
-      const rep = this.tasks.filter((task) => task.status === 2);
-      return rep;
-    },
+    
   },
   data() {
     return {
-      tasks: [],
+    
       title: "",
       viewNew: false,
+      
     };
   },
   methods: {
-    async takeTasks() {
+   
+   /*  async takeTasks() {
       const response = await this.tasksStore.fetchTasks();
       this.tasks = this.tasksStore.tasks;
-    },
-
-    /* this.ongoingArr = tasks.filter(task => task.status === "1");
-      console.log(this.ongoingArr);
-      this.doneArr = tasks.filter(task => task.status === "2") 
-    },*/
+    }, */
     async createTask(title) {
       const response2 = await this.tasksStore.createTask(
         this.userStore.user.id,
         title,
         0
       );
-      const response3 = await this.takeTasks();
+      const response3 = await this.tasksStore.fetchTasks();
     },
     viewNews() {
       if (this.viewNew === false) {
@@ -175,10 +158,8 @@ export default {
   },
   mounted() {
     console.log("mounted!");
-    this.takeTasks();
-    //console.log("voy a filterTasks");
-    //this.filterTasks();
-    //hacer el loading
+    this.tasksStore.fetchTasks();
+   //hacer el loading
   },
 };
 </script>

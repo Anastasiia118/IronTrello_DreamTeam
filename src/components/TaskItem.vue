@@ -38,16 +38,12 @@ export default {
   },
   methods: {
     async deleteTask() {
-      console.log("entro en deleteTask inside")
-      console.log(this.task.id)
+      //console.log("entro en deleteTask inside")
       const response4 = await this.tasksStore.deleteTask(this.task.id);
-      //const response3 = await this.takeTasks();
     },
     async editTask() {
-      console.log("entro en edit dashboard y el title:");
-      console.log(this.task.title);
+     // console.log("entro en edit del taskitem y el title:");
       const rs = await this.tasksStore.updateTask(this.task.id, this.editTitle);
-      //const res = await this.takeTasks();
     },
     viewEdits() {
       if (this.viewEdit === false) {
