@@ -1,7 +1,7 @@
 <template>
+  <AppHeader />
   <div>
     <h1>Dashboard</h1>
-    <button type="submit" @click="filterTasks">Create Filtered Arrays</button>
     <div id="colums-wraper">
       <!-- <div class="columna">
         <h2>Columna de To do</h2>
@@ -29,7 +29,7 @@
         </div>
       </div> -->
       <div class="columna">
-        <h2>Columna de To do</h2>
+        <h2>To do</h2>
         <div v-for="(task, index) in todoArr">
           <TaskItem :task="task" />
           <br />
@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="columna">
-        <h2>Columna de Ongoing</h2>
+        <h2>Ongoing</h2>
         <div v-for="(task, index) in ongoingArr">
           <TaskItem :task="task" />
           <br />
@@ -79,7 +79,7 @@
         </div>
       </div>
       <div class="columna">
-        <h2>Columna de done</h2>
+        <h2>Done</h2>
         <div v-for="(task, index) in doneArr">
           <TaskItem :task="task" />
           <br />
@@ -114,6 +114,7 @@ import tasksStore from "../stores/tasks.js";
 import TaskItem from "../components/TaskItem.vue";
 import userStore from "../stores/user.js";
 import tasks from "../stores/tasks.js";
+import AppHeader from "../components/AppHeader.vue";
 
 export default {
   computed: {
@@ -170,6 +171,7 @@ export default {
   },
   components: {
     TaskItem,
+    AppHeader,
   },
   mounted() {
     console.log("mounted!");

@@ -1,12 +1,11 @@
 <template>
-<div> {{task.title}} </div>
-<div> {{task.id}}</div>
+<b>{{task.title}}</b>
 <div> Status: 
   <span v-if="task.status === 1"> Ongoing</span>
   <span v-if="task.status === 0"> To Do</span>
   <span v-if="task.status === 2"> Done</span></div>
-<button type="submit" @click="deleteTask">Delete inside</button>
-<button type="sumbit" @click="viewEdits">Edit T inside</button>
+<button type="submit" @click="deleteTask">Delete</button>
+<button type="sumbit" @click="viewEdits">Edit Task</button>
 <div v-if="viewEdit === true">
         <textarea
           v-model="editTitle"
