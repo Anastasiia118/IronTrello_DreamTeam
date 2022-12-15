@@ -1,8 +1,8 @@
 <template>
   <div
-    class="flex flex-row justify-around items-center bg-zinc-800 w-[1000px] h-[1200px] rounded-[50px]"
+    class="flex flex-row justify-around items-center bg-zinc-800 w-[80vw] h-[80vh] rounded-[50px]"
   >
-    <div class="image-signup">
+    <div class=" hidden lg:block">
       <img
         src="../assets/images/—Pngtree—planing business goal_6809959.png"
         alt="todo list pic"
@@ -10,7 +10,7 @@
       />
     </div>
     <div
-      class="bg-zinc-800 min-w-[400px] min-h-[700px] flex flex-col justify-center items-center rounded-[50px]"
+      class="bg-zinc-800 min-w-[350px] h-[100%] flex flex-col justify-center items-center rounded-[50px]"
     >
       <form action="submit" @submit.prevent="signUp">
         <h1 class="text-violet-500 text-center mb-10)">Ironello</h1>
@@ -87,11 +87,5 @@ h1 {
 
 p {
   font-size: 0.8em;
-}
-
-@media only screen and (max-width: 480px) {
-  .image-signup {
-    display: none;
-  }
 }
 </style>
