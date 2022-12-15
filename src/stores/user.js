@@ -25,6 +25,9 @@ export default defineStore("user", {
         this.alreadyRegistered = true;
         this.$router.push("/Auth/signin");
       }
+      if (data) {
+        this.$router.push("/Auth/signin");
+      }
     },
     async signIn(email, password) {
       console.log("hola");
@@ -38,7 +41,6 @@ export default defineStore("user", {
       }
       if (data) {
         this.user = data.user;
-        console.log("this-router", this.$router);
         this.$router.push("/");
       }
     },
