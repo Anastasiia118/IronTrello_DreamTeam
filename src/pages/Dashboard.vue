@@ -97,8 +97,11 @@
         </div>
       </div>
     </div>
+    <AppFooter />
   </div>
   <router-view />
+ <!--  esto del router view se puede quitar? -->
+ 
 </template>
 
 <script>
@@ -108,6 +111,7 @@ import TaskItem from "../components/TaskItem.vue";
 import userStore from "../stores/user.js";
 //import tasks from "../stores/tasks.js";
 import AppHeader from "../components/AppHeader.vue";
+import AppFooter from "../components/AppFooter.vue";
 
 export default {
   computed: {
@@ -152,6 +156,7 @@ export default {
   components: {
     TaskItem,
     AppHeader,
+    AppFooter,
   },
   mounted() {
     this.tasksStore.fetchTasks();
