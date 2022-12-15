@@ -5,7 +5,7 @@
   <span v-if="task.status === 0"> To Do</span>
   <span v-if="task.status === 2"> Done</span></div>
 <button type="submit" @click="deleteTask">Delete</button>
-<button type="sumbit" @click="viewEdits">Edit Task</button>
+<button type="sumbit" @click="viewEdits()">Edit Task</button>
 <div v-if="viewEdit === true">
         <textarea
           v-model="editTitle"
@@ -14,7 +14,7 @@
           cols="30"
           rows="3"
         ></textarea>
-        <button type="submit"  @click="editTask">Edit</button>
+        <button type="submit"  @click="editTask();viewEdits()">Edit</button>
         </div>
 <br>
 </template>

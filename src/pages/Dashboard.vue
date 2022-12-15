@@ -1,33 +1,8 @@
 <template>
   <AppHeader />
-  <div>
+  <div class="dashboard-wraper">
     <h1>Dashboard</h1>
-    <div id="colums-wraper">
-      <!-- <div class="columna">
-        <h2>Columna de To do</h2>
-        <div v-for="(task, index) in this.tasksStore.tasks">
-          <TaskItem :task="task" />
-          <br />
-          <br />
-        </div>
-
-        <button type="submit" @click="viewNews">+ Add New Task</button>
-        <br />
-        <br />
-        <div v-if="viewNew === true">
-          <textarea
-            v-model="title"
-            name="textarea"
-            id="textarea"
-            cols="30"
-            rows="3"
-            placeholder="Enter the text of your taks"
-          ></textarea>
-          <br />
-          <br />
-          <button type="submit" @click="createTask(title)">Add</button>
-        </div>
-      </div> -->
+    <div class="columns-wraper">
       <div class="columna">
         <h2>To do</h2>
         <div v-for="(task, index) in tasksStore.todoArr">
@@ -154,9 +129,18 @@ export default {
 </script>
 
 <style scoped>
-#colums-wraper {
-  background-color: lightblue;
+.dashboard-wraper {
+  background-color: #292B31;
+  color: #FFFFFF;
+  padding: 30px;
+  width: 100vw;
+}
+.columns-wraper {
   display: flex;
-  flex-direction: row;
+  justify-content: start;
+
+}
+.columna{
+  background-color:#24262C;
 }
 </style>
