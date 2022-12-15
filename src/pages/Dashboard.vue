@@ -1,5 +1,5 @@
 <template>
-  <!-- <AppHeader /> -->
+  <AppHeader />
   <div class="dashboard-wraper">
     <h1>Dashboard</h1>
     <div class="columns-wraper">
