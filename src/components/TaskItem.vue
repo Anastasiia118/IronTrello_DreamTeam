@@ -1,6 +1,7 @@
 <template>
-<b>{{task.title}}</b>
-<div> Status: 
+  <div class="task-wrapper">
+    <p class="task-desc">{{task.title}}</p>
+<div class="statusTask"> Status: 
   <span v-if="task.status === 1"> Ongoing</span>
   <span v-if="task.status === 0"> To Do</span>
   <span v-if="task.status === 2"> Done</span></div>
@@ -16,7 +17,7 @@
         ></textarea>
         <button type="submit"  @click="editTask();viewEdits()">Edit</button>
         </div>
-<br>
+  </div>
 </template>
 
 <script>
@@ -56,3 +57,28 @@ export default {
   },
 }
 </script>
+<style>
+.task-wrapper{
+  width: 320px;
+  background-color: #292B31;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 14px;
+}
+.statusTask{
+  font-family: 'Exo 2';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 100%;
+color: rgba(255, 255, 255, 0.5);
+margin-bottom: 10px;
+}
+.task-desc{
+  margin-bottom: 5px;
+  font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 100%;
+}
+</style>
