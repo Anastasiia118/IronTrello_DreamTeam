@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-row justify-around items-center bg-zinc-800 w-[80vw] h-[80vh] rounded-[50px]"
+    class="flex flex-row justify-around items-center bg-zinc-800 w-[80vw] min-h-fit rounded-[50px]"
   >
     <div class=" hidden lg:block">
       <img
@@ -10,7 +10,7 @@
       />
     </div>
     <div
-      class="bg-zinc-800 min-w-[350px] h-[100%] flex flex-col justify-center items-center rounded-[50px]"
+      class="bg-zinc-800 min-w-[350px] h-[80vh] flex flex-col justify-center items-center rounded-[50px]"
     >
       <form action="submit" @submit.prevent="signUp">
         <h1 class="text-violet-500 text-center mb-10 pb-[50px] pt-[200px])">Ironello</h1>
@@ -43,12 +43,12 @@
           </button>
         </div>
       </form>
-      <div class="items-center mt-4">
+      <div class="items-center mt-4 mb-6">
         <p>
           Already a member?
           <span>
             <router-link to="/Auth/signin"
-              ><button type="submit" class="text-violet-400">
+              ><button type="submit" class="text-violet-400 hover:text-blue-400">
                 Log in
               </button></router-link
             ></span

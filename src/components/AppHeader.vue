@@ -7,8 +7,8 @@
       <img src="../assets/images/art.png" alt="logo" class="w-[50px]" />
     </div>
     <div>
-      <button @click="toggleDrop = !toggleDrop; open =!open">
-        <div class="space-y-2 block md:hidden ml-5">
+      <button @click="toggleDrop = !toggleDrop">
+        <div class="space-y-2 block md:hidden ml-5 hover:bg-zinc-600 px-2 py-2">
           <span class="block w-8 h-0.5 bg-zinc-300"></span>
           <span class="block w-8 h-0.5 bg-zinc-300"></span>
           <span class="block w-5 h-0.5 bg-zinc-300"></span>
@@ -45,6 +45,12 @@
     <li><a href="#" class="mr-[15px] hover:text-violet-400">Home</a></li>
         <li><a href="#" class="mr-[15px] text-end hover:text-violet-400">Dashboards</a></li>
         <li><a href="#" class="mr-[15px] hover:text-violet-400">Contact Us</a></li>
+        <li><button
+        @click="logOut()"
+        class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm my-2 px-4 py-1 text-center mr-3"
+      >
+        Log out!
+      </button></li>
       
   </ul> </div>
 </template>
@@ -58,7 +64,7 @@ export default {
   data() {
     return {
       toggleDrop: false,
-      open: false,
+      
     };
   },
   computed: {
