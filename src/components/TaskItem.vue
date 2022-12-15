@@ -32,7 +32,7 @@ export default {
   props: ["task"],
   data() {
     return {
-      viewEdit: false,
+      viewEdit: false, 
       editTitle: "",
     };
   },
@@ -46,11 +46,12 @@ export default {
       const rs = await this.tasksStore.updateTask(this.task.id, this.editTitle);
     },
     viewEdits() {
-      if (this.viewEdit === false) {
+       if (this.viewEdit === false) {
         this.viewEdit = true;
       } else if (this.viewEdit === true) {
         this.viewEdit = false;
-      }
+      } 
+      
     },
   },
 }

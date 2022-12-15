@@ -1,4 +1,6 @@
 <template>
+    <img src="" alt="">
+    <a href="#">Contact Us</a>
     <button @click="logOut()">Log out!</button>
 </template>
 

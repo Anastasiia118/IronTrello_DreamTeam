@@ -36,10 +36,10 @@
           <br />
         </div>
 
-        <button type="submit" @click="viewNews">+ Add New Task</button>
+        <button type="submit" @click="viewNews(toggleToDo)">+ Add New Task</button>
         <br />
         <br />
-        <div v-if="viewNew === true">
+        <div v-if="toggleToDo">
           <textarea
             v-model="title"
             name="textarea"
@@ -61,10 +61,10 @@
           <br />
         </div>
 
-        <button type="submit" @click="viewNews">+ Add New Task</button>
+        <button type="submit" @click="viewNews(toggleDoing)">+ Add New Task</button>
         <br />
         <br />
-        <div v-if="viewNew === true">
+        <div v-if="toggleDoing === true">
           <textarea
             v-model="title"
             name="textarea"
@@ -86,10 +86,10 @@
           <br />
         </div>
 
-        <button type="submit" @click="viewNews">+ Add New Task</button>
+        <button type="submit" @click="viewNews(toggleDone)">+ Add New Task</button>
         <br />
         <br />
-        <div v-if="viewNew === true">
+        <div v-if="toggleDone === true">
           <textarea
             v-model="title"
             name="textarea"
@@ -126,7 +126,10 @@ export default {
     return {
     
       title: "",
-      viewNew: false,
+      /* viewNew: false, */
+      toggleToDo: false,
+      toggleDoing: false,
+      toggleDone: false,
       
     };
   },
@@ -144,12 +147,14 @@ export default {
       );
       const response3 = await this.tasksStore.fetchTasks();
     },
-    viewNews() {
-      if (this.viewNew === false) {
+    viewNews(toggle) {
+      /* if (this.viewNew === false) {
         this.viewNew = true;
       } else if (this.viewNew === true) {
         this.viewNew = false;
-      }
+      } */
+        toggle === !toggle;
+        console.log("toggle", toggle)
     },
   },
   components: {
