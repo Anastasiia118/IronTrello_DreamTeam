@@ -1,6 +1,6 @@
 <template>
     
-<div >
+<div class="bg-zinc-700 text-zinc-300 flex flex-col justify-center items-center pt-[60px] pb-[100px] h-[100vh] " >
 
 <RouterView />
 </div>
