@@ -15,6 +15,7 @@
       <form action="submit" @submit.prevent="signUp">
         <h1 class="text-violet-500 text-center mb-10)">Ironello</h1>
         <p class="mb-2 text-center">Create a new account</p>
+        <div class="text-center flex flex-col justify-center items-center">
         <input
           type="email"
           v-model="email"
@@ -23,7 +24,7 @@
           placeholder="   Enter your email"
           class="bg-zinc-700 py-3 my-4 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
         />
-        <br />
+        
         <input
           type="password"
           v-model="password"
@@ -32,6 +33,7 @@
           placeholder="   Enter your password"
           class="bg-zinc-700 py-3 my-4 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
         />
+      </div>
         <div class="text-center">
           <button
             type="submit"
