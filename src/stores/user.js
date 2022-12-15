@@ -26,6 +26,7 @@ export default defineStore("user", {
         this.$router.push("/Auth/signin");
       }
       if (data) {
+        alert("Please note that a verification email has been sent to the email address you have registered.")
         this.$router.push("/Auth/signin");
       }
     },
