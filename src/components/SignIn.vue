@@ -1,6 +1,4 @@
 <template>
-  Soy el Sign In
-
   <form action="submit" @submit.prevent="signIn">
     <h1>TodoIron App</h1>
     <div v-if="userStore.alreadyRegistered">You are already registered!</div>
@@ -12,7 +10,7 @@
       id="email"
       placeholder="Enter your email"
     />
-    <br />
+    
     <input
       type="password"
       v-model="password"

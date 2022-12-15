@@ -1,9 +1,8 @@
 <template>
-  Soy el Sign Up
-
+  
   <form action="submit" @submit.prevent="signUp">
-    <h1>TodoIron App</h1>
-    <p>Register to be more efficient with your tasks!</p>
+    <h1 class="text-red-500">Ironello App</h1>
+    <p>Create a new account</p>
     <input
       type="email"
       v-model="email"
@@ -21,8 +20,8 @@
     />
     <button>Sign Up!</button>
   </form>
-  <div>Already signed up?</div>
-  <router-link to="/Auth/signin"> Go to sign in! </router-link>
+  <div>Already a member?</div>
+  <router-link to="/Auth/signin"> Log in </router-link>
 </template>
 
 <script>

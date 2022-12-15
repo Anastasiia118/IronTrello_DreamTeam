@@ -1,8 +1,9 @@
 <template>
-Soy el Auth <br>
+    
+<div >
 
 <RouterView />
-
+</div>
 </template>
 
 <script>
