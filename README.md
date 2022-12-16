@@ -57,7 +57,7 @@ npm install pinia
 
 Ironello is very intuitive app, however, find the list of features that you can use:
 
-### Columns
+### Columns:
 
 a. Create a column by clicking "Add new column" button.
 
@@ -65,7 +65,7 @@ b. Delete a column by clicking the "-" button.
 
 c. Change order of the columns by drag & drop feature.
 
-### Tasks
+### Tasks:
 
 a. Create a task by clicking "Add new task" button, write the tite and click "Add".
 
