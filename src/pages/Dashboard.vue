@@ -169,6 +169,7 @@ export default {
     AppFooter,
   },
   mounted() {
+    
     this.tasksStore.fetchTasks();
     //hacer el loading
   },

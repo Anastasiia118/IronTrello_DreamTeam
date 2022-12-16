@@ -26,9 +26,15 @@ export default defineStore("user", {
         this.$router.push("/Auth/signin");
       }
       if (data) {
-       // alert("Please note that a verification email has been sent to the email address you have registered.")
+        // alert("Please note that a verification email has been sent to the email address you have registered.")
         this.$router.push("/Auth/signin");
       }
+    },
+    async signInWithGitHub() {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'github',
+      })
+      
     },
     async signIn(email, password) {
       console.log("hola");
@@ -48,7 +54,7 @@ export default defineStore("user", {
     async signOut() {
       const { error } = await supabase.auth.signOut();
       this.user = null;
-      this.$router.push("/Auth/signin")
+      this.$router.push("/Auth/signin");
     },
   },
   persist: {

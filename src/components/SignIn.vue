@@ -51,6 +51,7 @@
         No registered yet?
         <router-link to="/Auth/signup">
           <button type="submit" class="text-violet-400 hover:text-blue-400">Go to sign up!</button>
+          <button type="submit" @click="signInGit" class="text-violet-400 hover:text-blue-400">Login with Github</button>
         </router-link>
       </div>
     </div>
@@ -80,6 +81,10 @@ export default {
         this.errorOccured = true;
       }
     },
+    async signInGit() {
+      console.log("entro");
+      const response = await this.userStore.signInWithGitHub();
+    }
   },
 };
 </script>
