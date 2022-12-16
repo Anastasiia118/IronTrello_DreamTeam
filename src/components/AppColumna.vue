@@ -90,6 +90,8 @@ export default {
   padding: 16px;
   min-width: 352px;
   margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);;
+
 }
 .columna h2 {
   color:#ea70ff;
