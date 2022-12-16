@@ -1,5 +1,7 @@
 <template>
-  <div class="columna">
+  <div class="columna" @drop="onDrop($event,columnStatus)"
+       @dragenter.prevent
+       @dragover.prevent>
   <h2 v-if="columnStatus === 1"> Ongoing</h2>
   <h2 v-if="columnStatus === 0"> To Do</h2>
   <h2 v-if="columnStatus === 2"> Done</h2>
@@ -70,6 +72,14 @@ export default {
     deleteText() {
         this.title = "";
     },
+    onDrop(event, status){
+        const taskID = event.dataTransfer.getData(`taskID`);
+        const task = this.tasksStore.tasks.find((task) => 
+         task.id == taskID
+        )
+        console.log("es task",taskID)
+        task.status = status
+    }
   },
   components: {
     TaskItem,

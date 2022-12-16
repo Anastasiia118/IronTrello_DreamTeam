@@ -1,6 +1,6 @@
 <template>
-  <div class="task-wrapper">
-    <p class="task-desc">{{task.title}}</p>
+  <div class="task-wrapper" draggable="true" @dragstart="startDrag($event,task)">
+    <p class="task-desc" >{{task.title}}</p>
 <div class="statusTask"> Status: 
   <span v-if="task.status === 1"> Ongoing</span>
   <span v-if="task.status === 0"> To Do</span>
@@ -52,8 +52,14 @@ export default {
       } else if (this.viewEdit === true) {
         this.viewEdit = false;
       } 
-      
     },
+    startDrag(event, task){
+      console.log(task)
+      event.dataTransfer.dropEffect = `move`;
+      event.dataTransfer.effectAllowed = `move`;
+      event.dataTransfer.setData(`taskID`,this.task.id);
+
+    }
   },
 }
 </script>
