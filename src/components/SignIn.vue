@@ -4,7 +4,7 @@
   >
     <div class="hidden lg:block">
       <img
-        src="../assets/images/—Pngtree—planing business goal_6809959.png"
+        src="../assets/images/art.png"
         alt="todo list pic"
         class="w-[300px] opacity-80 rounded-xl"
       />
