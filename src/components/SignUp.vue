@@ -10,11 +10,11 @@
       />
     </div>
     <div
-      class="bg-zinc-800 min-w-[350px] h-[80vh] flex flex-col justify-center items-center rounded-[50px]"
+      class="bg-zinc-800 min-w-[350px] min-h-fit flex flex-col justify-center items-center rounded-[50px]"
     >
       <form action="submit" @submit.prevent="signUp">
         <h1 class="text-violet-500 text-center mb-10 pb-[50px] pt-[200px])">Ironello</h1>
-        <p class="mb-2 text-center">Create a new account</p>
+        <p class="mb-2 text-center text-xl">Create a new account</p>
         <div class="text-center flex flex-col justify-center items-center">
         <input
           type="email"
@@ -43,7 +43,7 @@
           </button>
         </div>
       </form>
-      <div class="items-center mt-4 mb-6">
+      <div class="items-center mt-4 mb-12">
         <p>
           Already a member?
           <span>

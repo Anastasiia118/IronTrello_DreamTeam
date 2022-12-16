@@ -33,6 +33,8 @@ export default defineStore("user", {
     async signInWithGitHub() {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'github',
+        
+        
       })
       
     },
