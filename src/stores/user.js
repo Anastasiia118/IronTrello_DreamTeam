@@ -39,12 +39,12 @@ export default defineStore("user", {
       
     },
     async signIn(email, password) {
-      console.log("hola");
+     
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       });
-      console.log("es error", error);
+      
       if (error) {
         return -2;
       }
@@ -54,8 +54,11 @@ export default defineStore("user", {
       }
     },
     async signOut() {
+      console.log("entro en signout")
       const { error } = await supabase.auth.signOut();
       this.user = null;
+      console.log(this.user)
+      localStorage.setItem("user", null)
       this.$router.push("/Auth/signin");
     },
   },
@@ -67,5 +70,5 @@ export default defineStore("user", {
         storage: localStorage,
       },
     ],
-  },
+  }, 
 });

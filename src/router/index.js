@@ -10,19 +10,23 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      name: "Dashboard",
       component: Dashboard,
       meta: { requiresAuth: true }
     },
     {
       path: "/Auth",
+      name: "Auth",
       component: Auth,
       children: [
         {
           path: "signup",
+          name: "signup",
           component: SignUp,
         },
         {
           path: "signin",
+          name: "signup",
           component: SignIn,
         },
       ],

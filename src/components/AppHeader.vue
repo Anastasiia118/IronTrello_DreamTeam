@@ -76,7 +76,8 @@ export default {
   },
   methods: {
     async logOut() {
-      await this.userStore.signOut();
+      const response = await this.userStore.signOut();
+      
     },
     username() {
       return userStore.user.email;
