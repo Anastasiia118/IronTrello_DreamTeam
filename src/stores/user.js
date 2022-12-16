@@ -32,11 +32,16 @@ export default defineStore("user", {
     },
     async signInWithGitHub() {
       const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'github',
-        
-        
+        provider: 'github',        
       })
-      
+      if (error) {
+        throw error
+      }if (data) {
+        console.log(data)
+        console.log(localStorage.getItem('sb-lqpzibsnduferkxfczdq-auth-token'))
+      // const token = localStorage.getItem('sb-lqpzibsnduferkxfczdq-auth-token')
+       //this.user = token.user
+      }
     },
     async signIn(email, password) {
      
