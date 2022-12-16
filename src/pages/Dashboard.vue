@@ -2,8 +2,8 @@
   <AppHeader />
   <div class="dashboard-wraper">
     <h1>Dashboard</h1>
-    <div class="columns-wraper">
-      <div class="columna">
+    <div class="columns-wraper items-start">
+      <div class="columna ">
         <h2>To do</h2>
         <div v-for="(task, index) in tasksStore.todoArr">
           <TaskItem :task="task" />
@@ -14,17 +14,18 @@
         </button>
         <div v-if="toggleToDo" class="pull-down">
           <textarea
-            v-model="title"
+            v-model="title0"
             name="textarea"
             id="textarea"
             cols="30"
             rows="3"
             placeholder="Enter the text of your taks"
           ></textarea>
-          <button
+          <div class="pulldownBtns justify-between flex flex-col">
+            <button
             type="submit"
             @click="
-              createTask(title, 0);
+              createTask(title0, 0);
               viewToDo();
               deleteText();
             "
@@ -32,6 +33,7 @@
             Add
           </button>
           <button type="reset" @click="deleteText()">Reset</button>
+          </div>
         </div>
       </div>
       <div class="columna">
@@ -45,24 +47,26 @@
         </button>
         <div v-if="toggleDoing" class="pull-down">
           <textarea
-            v-model="title"
+            v-model="title1"
             name="textarea"
             id="textarea"
             cols="30"
             rows="3"
             placeholder="Enter the text of your taks"
           ></textarea>
-          <button
+          <div class="pulldownBtns justify-between flex flex-col">
+            <button
             type="submit"
             @click="
-              createTask(title, 1);
+              createTask(title1, 1);
               viewDoing();
               deleteText();
             "
           >
             Add
           </button>
-          <button type="reset" @click="deleteText()">reset</button>
+          <button type="reset" @click="deleteText()">Reset</button>
+          </div>
         </div>
       </div>
       <div class="columna">
@@ -76,24 +80,26 @@
         </button>
         <div v-if="toggleDone" class="pull-down">
           <textarea
-            v-model="title"
+            v-model="title2"
             name="textarea"
             id="textarea"
             cols="30"
             rows="3"
             placeholder="Enter the text of your taks"
           ></textarea>
-          <button
+          <div class="pulldownBtns justify-between flex flex-col">
+            <button
             type="submit"
             @click="
-              createTask(title, 2);
+              createTask(title2, 2);
               viewDone();
               deleteText();
             "
           >
             Add
           </button>
-          <button type="reset" @click="deleteText()">reset</button>
+          <button type="reset" @click="deleteText()">Reset</button>
+          </div>
         </div>
       </div>
     </div>
@@ -120,7 +126,9 @@ export default {
   },
   data() {
     return {
-      title: "",
+      title0: "",
+      title1: "",
+      title2: "",
       /* viewNew: false, */
       toggleToDo: false,
       toggleDoing: false,
@@ -150,7 +158,9 @@ export default {
       this.toggleDone = !this.toggleDone;
     },
     deleteText() {
-      this.title = "";
+      this.title0 = "";
+      this.title1 = "";
+      this.title2 = "";
     },
   },
   components: {
@@ -166,16 +176,19 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
 .dashboard-wraper {
   background-color: #292b31;
   color: #ffffff;
-  padding: 30px;
+  padding: 50px;
   width: 100vw;
   min-height: 100vh;
 }
 .columns-wraper {
   display: flex;
-  justify-content: start;
   flex-wrap: wrap;
 }
 .columns-wraper:last-child {
@@ -186,15 +199,16 @@ export default {
   border-radius: 12px;
   margin-right: 27px;
   padding: 16px;
-  min-width: 352px;;
+  min-width: 352px;
   margin-bottom: 20px;
 }
 .columna h2 {
   color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 15px;
 }
 .addTask {
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   line-height: 100%;
   color: #ffffff;
@@ -212,26 +226,31 @@ export default {
 .pull-down {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
+ 
 }
 .pull-down textarea {
   outline: #292b31;
   border-radius: 12px;
-  padding: 10px;
-  font-family: 'Exo 2';
-  color:#24262c;
+  padding: 7px;
+  font-family: "Exo 2";
+  color: #24262c;
+  margin-right: 5px;
+  height: 66px;
 }
 .pull-down button {
   height: 30px;
-  color:#ffffff;
-  background-color:#24262c;
+  background-color:#4B69FF;
   border: none;
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 100%;
-  color: #ffffff;
+font-weight: 600;
+font-size: 14px;
+line-height: 100%;
+color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-
+  padding: 3px 7px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+ 
 }
 </style>

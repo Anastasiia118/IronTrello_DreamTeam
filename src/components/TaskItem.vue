@@ -5,9 +5,9 @@
   <span v-if="task.status === 1"> Ongoing</span>
   <span v-if="task.status === 0"> To Do</span>
   <span v-if="task.status === 2"> Done</span></div>
-<button type="submit" @click="deleteTask">Delete</button>
-<button type="sumbit" @click="viewEdits()">Edit Task</button>
-<div v-if="viewEdit === true">
+<button id="delete-btn" type="submit" @click="deleteTask">Delete</button>
+<button id="edit-btn" type="sumbit" @click="viewEdits()">Edit Task</button>
+<div class="edit-box items-start" v-if="viewEdit === true">
         <textarea
           v-model="editTitle"
           name="edittext"
@@ -15,7 +15,7 @@
           cols="30"
           rows="3"
         ></textarea>
-        <button type="submit"  @click="editTask();viewEdits()">Edit</button>
+        <button type="submit"  @click="editTask();viewEdits()">Ok</button>
         </div>
   </div>
 </template>
@@ -59,7 +59,7 @@ export default {
 </script>
 <style>
 .task-wrapper{
-  width: 320px;
+  /* width: 320px; */
   background-color: #292B31;
   border-radius: 12px;
   padding: 20px;
@@ -77,8 +77,45 @@ margin-bottom: 10px;
 .task-desc{
   margin-bottom: 5px;
   font-style: normal;
-font-weight: 700;
+font-weight: 500;
 font-size: 16px;
 line-height: 100%;
+}
+#delete-btn{
+  font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 100%;
+margin-right: 7px;
+background-color: #989CAA;
+  padding: 5px 7px;
+  border-radius: 7px;
+}
+#delete-btn:hover{
+  background-color:#4B69FF;
+}
+#edit-btn {
+  font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 100%;
+color:#4B69FF;
+}
+#edit-btn:hover {
+  color: white;
+}
+.edit-box{
+  margin-top: 10px;
+  display: flex;
+ flex-direction: column;
+}
+.edit-box textarea {
+  outline: #292b31;
+  border-radius: 12px;
+  padding: 7px;
+  font-family: "Exo 2";
+  color: #24262c;
+  margin-right: 5px;
+  height: 66px;
 }
 </style>
