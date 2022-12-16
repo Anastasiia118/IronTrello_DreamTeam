@@ -39,6 +39,7 @@ export default {
     AppColumna,
   },
   mounted() {
+    
     this.tasksStore.fetchTasks();
     //hacer el loading
   },

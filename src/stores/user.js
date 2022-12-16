@@ -8,6 +8,7 @@ export default defineStore("user", {
     return {
       user: null,
       alreadyRegistered: false,
+      
     };
   },
 
@@ -26,17 +27,31 @@ export default defineStore("user", {
         this.$router.push("/Auth/signin");
       }
       if (data) {
-       // alert("Please note that a verification email has been sent to the email address you have registered.")
+        // alert("Please note that a verification email has been sent to the email address you have registered.")
         this.$router.push("/Auth/signin");
       }
     },
+    async signInWithGitHub() {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'github',        
+      })
+      if (error) {
+        throw error
+      }if (data) {
+        console.log(data)
+        //localStorage.setItem('sb-lqpzibsnduferkxfczdq-auth-token', JSON.stringify(sb-lqpzibsnduferkxfczdq-auth-token))
+      //const token = localStorage.getItem('sb-lqpzibsnduferkxfczdq-auth-token')
+      
+       //this.user = JSON.parse(token.user)
+      }
+    },
     async signIn(email, password) {
-      console.log("hola");
+     
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       });
-      console.log("es error", error);
+      
       if (error) {
         return -2;
       }
@@ -46,9 +61,12 @@ export default defineStore("user", {
       }
     },
     async signOut() {
+      console.log("entro en signout")
       const { error } = await supabase.auth.signOut();
       this.user = null;
-      this.$router.push("/Auth/signin")
+      console.log(this.user)
+      localStorage.setItem("user", null)
+      this.$router.push("/Auth/signin");
     },
   },
   persist: {
@@ -59,5 +77,5 @@ export default defineStore("user", {
         storage: localStorage,
       },
     ],
-  },
+  }, 
 });

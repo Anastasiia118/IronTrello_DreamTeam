@@ -21,7 +21,7 @@ export default defineStore("tasks", {
         .order("id", { ascending: false });
 
       this.tasks = tasks;    
-    
+    console.log(this.tasks)
     },
 
     async createTask(userId,title,status) {
