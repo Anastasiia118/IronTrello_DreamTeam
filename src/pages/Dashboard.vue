@@ -3,7 +3,7 @@
   <div class="dashboard-wraper">
     <h1>Dashboard</h1>
     <div class="columns-wraper items-start">
-      <div class="columna flex flex-col">
+      <div class="columna ">
         <h2>To do</h2>
         <div v-for="(task, index) in tasksStore.todoArr">
           <TaskItem :task="task" />
