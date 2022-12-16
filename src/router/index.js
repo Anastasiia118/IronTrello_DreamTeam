@@ -23,10 +23,11 @@ const router = createRouter({
           path: "signup",
           name: "signup",
           component: SignUp,
+          
         },
         {
           path: "signin",
-          name: "signup",
+          name: "signin",
           component: SignIn,
         },
       ],
@@ -37,6 +38,7 @@ const router = createRouter({
 router.beforeEach((to) => {
   const store = userStore();
   if (to.meta.requiresAuth && !store.user) return '/Auth/signin'
+
 });
 
 export default router;
