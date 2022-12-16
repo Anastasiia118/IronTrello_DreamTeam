@@ -4,7 +4,7 @@
   >
     <div class="hidden lg:block">
       <img
-        src="../assets/images/art.png"
+        src="../assets/images/people_icon.png"
         alt="todo list pic"
         class="w-[300px] opacity-80 rounded-xl"
       />
