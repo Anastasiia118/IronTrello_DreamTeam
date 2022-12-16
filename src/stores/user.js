@@ -8,6 +8,7 @@ export default defineStore("user", {
     return {
       user: null,
       alreadyRegistered: false,
+      
     };
   },
 
@@ -38,9 +39,10 @@ export default defineStore("user", {
         throw error
       }if (data) {
         console.log(data)
-        console.log(localStorage.getItem('sb-lqpzibsnduferkxfczdq-auth-token'))
-      // const token = localStorage.getItem('sb-lqpzibsnduferkxfczdq-auth-token')
-       //this.user = token.user
+        //localStorage.setItem('sb-lqpzibsnduferkxfczdq-auth-token', JSON.stringify(sb-lqpzibsnduferkxfczdq-auth-token))
+      //const token = localStorage.getItem('sb-lqpzibsnduferkxfczdq-auth-token')
+      
+       //this.user = JSON.parse(token.user)
       }
     },
     async signIn(email, password) {
