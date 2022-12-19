@@ -8,14 +8,15 @@ export default defineStore("user", {
     return {
       user: null,
       alreadyRegistered: false,
+      variable: {},
       
     };
   },
 
   actions: {
     async fetchUser() {
-      const user = await supabase.auth.user();
-      this.user = user;
+      const user = await supabase.auth.getUser();
+      this.user = user.data.user;
     },
     async signUp(email, password) {
       const { data, error } = await supabase.auth.signUp({
@@ -38,11 +39,10 @@ export default defineStore("user", {
       if (error) {
         throw error
       }if (data) {
-        console.log(data)
-        //localStorage.setItem('sb-lqpzibsnduferkxfczdq-auth-token', JSON.stringify(sb-lqpzibsnduferkxfczdq-auth-token))
-      //const token = localStorage.getItem('sb-lqpzibsnduferkxfczdq-auth-token')
-      
-       //this.user = JSON.parse(token.user)
+        
+        this.user = response.data.user;
+        
+        
       }
     },
     async signIn(email, password) {
@@ -57,7 +57,7 @@ export default defineStore("user", {
       }
       if (data) {
         this.user = data.user;
-        this.$router.push("/");
+        this.$router.replace("/");
       }
     },
     async signOut() {
@@ -65,7 +65,6 @@ export default defineStore("user", {
       const { error } = await supabase.auth.signOut();
       this.user = null;
       console.log(this.user)
-      localStorage.setItem("user", null)
       this.$router.push("/Auth/signin");
     },
    
@@ -79,4 +78,5 @@ export default defineStore("user", {
       },
     ],
   }, 
+  
 });

@@ -40,8 +40,9 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to) => {
+router.beforeEach( async (to) => {
   const store = userStore();
+  await store.fetchUser();
   if (to.meta.requiresAuth && !store.user) return "/Auth/signin";
 });
 

@@ -90,6 +90,10 @@ export default {
       this.$router.push("/");
     }
   },
+  mounted() {
+    this.userStore.fetchUser();
+   //console.log( "variable:", this.userStore.variable)
+  }
 };
 </script>
 
