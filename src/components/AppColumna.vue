@@ -72,13 +72,16 @@ export default {
     deleteText() {
         this.title = "";
     },
-    onDrop(event, status){
+   async onDrop(event, status){
         const taskID = event.dataTransfer.getData(`taskID`);
         const task = this.tasksStore.tasks.find((task) => 
          task.id == taskID
         )
         console.log("es task",taskID)
         task.status = status
+        const saveStatus = await this.tasksStore.updateStatus(taskID, task.status);
+        console.log("task.status", task.status)
+
     }
   },
   components: {
@@ -86,8 +89,8 @@ export default {
   },
   mounted() {
     this.tasksStore.fetchTasks();
+    console.log("columnArr", this.columnArr)
     //hacer el loading
-    console.log("columnArr", this.columnArr);
   },
 };
 </script>
