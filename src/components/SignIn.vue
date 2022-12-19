@@ -46,7 +46,7 @@
         </button>
       </div>
       </form>
-      <div class="text-xs text-violet-400 hover:text-blue-40"> <button > Forgot your password? </button></div>
+      <div class="text-xs text-violet-400 hover:text-blue-40"> <button type="submit" @click="resetPass(email)"> Forgot your password? </button></div>
       <div v-if="errorOccured" class="border-[1px] border-purple-400 px-4 py-3 my-3">Oops! Your email or password is wrong!</div>
     
       <div class="mt-4 mb-4">
@@ -99,6 +99,11 @@ export default {
       console.log("entro");
       const response = await this.userStore.signInWithGitHub();
       this.$router.replace("/");
+    },
+    async resetPass(email) {
+      console.log("entro en resert signin")
+      const response = await this.userStore.resetPass(email)
+    alert("Please check your email for email verification")
     }
   },
   mounted() {

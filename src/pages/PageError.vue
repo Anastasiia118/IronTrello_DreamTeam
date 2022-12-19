@@ -6,15 +6,15 @@
       class="bg-zinc-800 rounded-[50px] min-h-fit w-[80vw] flex flex-col md:flex-col justify-center items-center px-2 pt-6"
     >
       <div
-        class="px-4 text-center mb-6 flex flex-col justify-center items-center"
+        class="px-4 text-center mb-6 flex flex-col justify-center items-center text-xs md:text-sm"
       >
         <!-- div para la parte izquierda-->
         <img
           src="../assets/images/noun-404-error.png"
           alt="page error face"
-          class="w-[80px] opacity-80 mt-[15px]"
+          class="w-[80px] opacity-70 mt-[15px]"
         />
-        <h1 class="text-3xl md:text-6xl mb-6 font-bold">
+        <h1 class="text-3xl md:text-6xl mb-6 font-bold text-purple-500">
           YOU SEEM TO BE LOST!
         </h1>
         <p>The page you're looking for isn't available.</p>

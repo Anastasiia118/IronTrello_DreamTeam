@@ -67,6 +67,12 @@ export default defineStore("user", {
       console.log(this.user)
       this.$router.push("/Auth/signin");
     },
+    async resetPass(email) {
+      console.log("entro en resert userjs")
+      console.log(email)
+      const response = await supabase.auth.resetPasswordForEmail(email)
+      
+          },
    
   },
   persist: {
