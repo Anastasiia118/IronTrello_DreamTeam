@@ -24,13 +24,14 @@ export default defineStore("tasks", {
     console.log(this.tasks)
     },
 
-    async createTask(userId,title,status) {
+    async createTask(userId,title,status, order) {
       const response = await supabase
       .from("tasks")
       .insert({
         'user_id': userId,
         'title': title,
         'status': status,
+        'order': order,
        });
     },
 

@@ -24,7 +24,7 @@
       <div class="pulldownBtns justify-between flex flex-col">
         <button
           type="submit"
-          @click="createTask(title, columnStatus);
+          @click="createTask(title, columnStatus, orderNum);
             viewField();
             deleteText();">
           Add
@@ -51,6 +51,7 @@ export default {
     return {
       title: "",
       toggleField: false,
+      orderNum: -1
     };
   },
   methods: {
@@ -58,13 +59,17 @@ export default {
       const response = await this.tasksStore.fetchTasks();
       this.tasks = this.tasksStore.tasks;
     }, 
-    async createTask(title, status) {
+    async createTask(title, status, order) {
+        order++;
+        this.orderNum = order
       const response2 = await this.tasksStore.createTask(
         this.userStore.user.id,
         title,
-        status 
+        status,
+        order, 
       );
       const response3 = await this.tasksStore.fetchTasks();
+      console.log("order:", order)
     },
     viewField() {
       this.toggleField = !this.toggleField;
