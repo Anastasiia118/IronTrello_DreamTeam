@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-row justify-around items-center bg-zinc-800 w-[80vw]  min-h-fit rounded-[50px]"
+    class="flex flex-row justify-around items-center bg-zinc-800 w-[80vw]  min-h-fit  rounded-[50px]"
   >
     <div class="hidden lg:block">
       <img
@@ -13,7 +13,7 @@
       class="bg-zinc-800 min-w-[350px] min-h-fit  flex flex-col justify-center items-center rounded-[50px]"
     >
       <form action="submit" @submit.prevent="signIn">
-        <h1 class="text-violet-500 text-center mb-10 pb-[50px] pt-[200px])">Ironello</h1>
+        <h1 class="text-violet-500 text-center mb-10 pb-[20px] pt-[200px])">Ironello</h1>
         <div v-if="userStore.alreadyRegistered" class="text-center border-[1px] border-purple-400 px-4 py-3 my-3">
           You are already registered!
         </div>
@@ -25,7 +25,7 @@
           name="email"
           id="email"
           placeholder="   Enter your email"
-          class="bg-zinc-700 py-3 px-3 my-4 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
+          class="bg-zinc-700 py-3 px-3 my-3 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
         />
 
         <input
@@ -34,7 +34,7 @@
           name="password"
           id="password"
           placeholder="   Enter your password"
-          class="bg-zinc-700 py-3 px-3 my-4 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
+          class="bg-zinc-700 py-3 px-3 my-3 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
         /> 
       </div>
       <div class="text-center">
@@ -49,14 +49,25 @@
       <div class="text-xs text-violet-400 hover:text-blue-40"> <button > Forgot your password? </button></div>
       <div v-if="errorOccured" class="border-[1px] border-purple-400 px-4 py-3 my-3">Oops! Your email or password is wrong!</div>
     
-      <div class="mt-4 mb-12">
+      <div class="mt-4 mb-4">
         No registered yet?
         <router-link to="/Auth/signup">
           <button type="submit" class="text-violet-400 hover:text-blue-400">Go to sign up!</button>
-          <br>
-          <button type="submit" @click="signInGit" class="text-violet-400 hover:text-blue-400">Login with Github</button>
         </router-link>
+       
       </div>
+      <div class="opacity-30 w-[300px] flex flex-row items-center justify-between">
+        <hr class="w-[120px]">
+          <p class="text-sm"> OR</p>
+          <hr class="w-[120px]">
+      </div>
+      <button type="submit" @click="signInGit" class="opacity-50 hover:opacity-100 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm w-[300px] py-[1px] text-center mt-3 mb-[40px] flex flex-row items-center justify-center"> 
+        <img src="../assets/images/github.png" alt="github icon" class="w-[40px]"> 
+        <p> Login with Github  </p>
+        
+      
+      </button>
+
     </div>
   </div>
 </template>
@@ -87,12 +98,11 @@ export default {
     async signInGit() {
       console.log("entro");
       const response = await this.userStore.signInWithGitHub();
-      this.$router.push("/");
+      this.$router.replace("/");
     }
   },
   mounted() {
     this.userStore.fetchUser();
-   //console.log( "variable:", this.userStore.variable)
   }
 };
 </script>

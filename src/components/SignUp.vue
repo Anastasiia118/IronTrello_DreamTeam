@@ -13,7 +13,7 @@
       class="bg-zinc-800 min-w-[350px] min-h-fit flex flex-col justify-center items-center rounded-[50px]"
     >
       <form action="submit" @submit.prevent="signUp">
-        <h1 class="text-violet-500 text-center mb-10 pb-[50px] pt-[200px])">Ironello</h1>
+        <h1 class="text-violet-500 text-center mb-10 pb-[20px] pt-[200px])">Ironello</h1>
         <p class="mb-2 text-center text-xl">Create a new account</p>
         <div class="text-center flex flex-col justify-center items-center">
         <input
@@ -43,7 +43,7 @@
           </button>
         </div>
       </form>
-      <div class="items-center mt-4 mb-12">
+      <div class="items-center mt-4 mb-4">
         <p>
           Already a member?
           <span>
@@ -55,6 +55,17 @@
           >
         </p>
       </div>
+      <div class="opacity-30 w-[300px] flex flex-row items-center justify-between">
+        <hr class="w-[120px]">
+          <p class="text-sm"> OR</p>
+          <hr class="w-[120px]">
+      </div>
+      <button type="submit" @click="signInGit" class="opacity-50 hover:opacity-100 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm w-[300px] py-[1px] text-center mt-3 mb-[40px] flex flex-row items-center justify-center"> 
+        <img src="../assets/images/github.png" alt="github icon" class="w-[40px]"> 
+        <p> Sign Up with Github  </p>
+        
+      
+      </button>
     </div>
   </div>
 </template>
@@ -77,7 +88,12 @@ export default {
     signUp() {
       this.userStore.signUp(this.email, this.password);
     },
+    async signInGit() {
+      const response = await this.userStore.signInWithGitHub();
+      this.$router.replace("/");
+    },
   },
+
 };
 </script>
 
