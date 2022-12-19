@@ -53,11 +53,12 @@ export default {
         this.viewEdit = false;
       } 
     },
-    startDrag(event, task){
+    startDrag(event, task,){
       console.log(task)
       event.dataTransfer.dropEffect = `move`;
       event.dataTransfer.effectAllowed = `move`;
       event.dataTransfer.setData(`taskID`,this.task.id);
+      event.dataTransfer.setData(`taskOrder`,this.task.order);
 
     }
   },

@@ -5,7 +5,7 @@
   <h2 v-if="columnStatus === 1"> Ongoing</h2>
   <h2 v-if="columnStatus === 0"> To Do</h2>
   <h2 v-if="columnStatus === 2"> Done</h2>
-    <div v-for="(task, index) in columnArr">
+    <div v-for="(task, index) in columnArr" @drop="onDropList($event, task)">
       <TaskItem :task="task" />
     </div>
     <button type="submit" @click="viewField()" class="addTask">
@@ -60,7 +60,11 @@ export default {
       this.tasks = this.tasksStore.tasks;
     }, 
     async createTask(title, status, order) {
-        order++;
+        if(order >= 1){
+           order = this.columnArr.length + 1;
+        } else {
+            order ++
+        }
         this.orderNum = order
       const response2 = await this.tasksStore.createTask(
         this.userStore.user.id,
@@ -84,11 +88,20 @@ export default {
         )
         console.log("es task",taskID)
         task.status = status
-        const saveStatus = await this.tasksStore.updateStatus(taskID, task.status);
+        await this.tasksStore.updateStatus(taskID, task.status);
         console.log("task.status", task.status)
 
-    }
+    },
+    async onDropList(event, originTask){
+        const taskOrder = event.dataTransfer.getData(`taskOrder`);
+        const taskID = event.dataTransfer.getData(`taskID`);
+    
+        await this.tasksStore.updateOrder(taskID,originTask.order)
+        await this.tasksStore.updateOrder(originTask.id, taskOrder)
+        console.log("task",originTask)
+    },
   },
+
   components: {
     TaskItem,
   },

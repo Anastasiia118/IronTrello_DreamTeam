@@ -18,7 +18,7 @@ export default defineStore("tasks", {
 
         .select("*")
 
-        .order("id", { ascending: false });
+        .order("order", { ascending: false });
 
       this.tasks = tasks;    
     console.log(this.tasks)
@@ -59,6 +59,13 @@ export default defineStore("tasks", {
       const {error} = await supabase
       .from("tasks")
       .update({'status': editStatus})
+      .match({'id': taskID})
+      const response = await this.fetchTasks();
+    },
+    async updateOrder(taskID, editOrder){
+      const {error} = await supabase
+      .from("tasks")
+      .update({'order': editOrder})
       .match({'id': taskID})
       const response = await this.fetchTasks();
     },
