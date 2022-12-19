@@ -51,11 +51,15 @@ export default defineStore("tasks", {
       .update({'title' : editTitle})
       .match({'id': taskId})
       //console.log("voy a fetchtasks")
-      const response2 = await this.fetchTasks();
-      
-      
-      
-      
+      const response2 = await this.fetchTasks();  
+    },
+
+    async updateStatus(taskID, editStatus){
+      const {error} = await supabase
+      .from("tasks")
+      .update({'status': editStatus})
+      .match({'id': taskID})
+      const response = await this.fetchTasks();
     },
   },
 getters: {
