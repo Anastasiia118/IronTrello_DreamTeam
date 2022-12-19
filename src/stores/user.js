@@ -68,6 +68,7 @@ export default defineStore("user", {
       localStorage.setItem("user", null)
       this.$router.push("/Auth/signin");
     },
+   
   },
   persist: {
     enabled: true,

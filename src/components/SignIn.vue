@@ -46,11 +46,14 @@
         </button>
       </div>
       </form>
+      <div class="text-xs text-violet-400 hover:text-blue-40"> <button > Forgot your password? </button></div>
       <div v-if="errorOccured" class="border-[1px] border-purple-400 px-4 py-3 my-3">Oops! Your email or password is wrong!</div>
+    
       <div class="mt-4 mb-12">
         No registered yet?
         <router-link to="/Auth/signup">
           <button type="submit" class="text-violet-400 hover:text-blue-400">Go to sign up!</button>
+          <br>
           <button type="submit" @click="signInGit" class="text-violet-400 hover:text-blue-400">Login with Github</button>
         </router-link>
       </div>
