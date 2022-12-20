@@ -36,7 +36,7 @@
               name="password"
               id="password"
               placeholder="   Enter your new password"
-              class="bg-zinc-700 w-fullpx-3 px-3 py-3 rounded-lg placeholder:text-zinc-400 placeholder:text-[0.8em]"
+              class="bg-zinc-700 w-[300px]  px-3 py-3 rounded-lg placeholder:text-zinc-400 placeholder:text-[0.8em]"
             />
             <button v-if="viewPass" @click="switchViewPass"> 
               <img
@@ -59,7 +59,7 @@
               v-model="confirmPassword"
               name="confirmPassword"
               id="confirmPassword"
-              placeholder="   Enter your new password"
+              placeholder="   Confirm your new password"
               class="bg-zinc-700 px-3 py-3 w-[300px] rounded-lg placeholder:text-zinc-400 placeholder:text-[0.8em]"
             />
             <input v-if="!viewPass1"
@@ -67,8 +67,8 @@
               v-model="confirmPassword"
               name="confirmPassword"
               id="confirmPassword"
-              placeholder="   Enter your new password"
-              class="bg-zinc-700 w-fullpx-3 px-3 py-3 rounded-lg placeholder:text-zinc-400 placeholder:text-[0.8em]"
+              placeholder="   Confirm your new password"
+              class="bg-zinc-700 w-[300px] px-3 py-3 rounded-lg placeholder:text-zinc-400 placeholder:text-[0.8em]"
             />
             <button v-if="viewPass1" @click="switchViewPass1"> 
               <img
