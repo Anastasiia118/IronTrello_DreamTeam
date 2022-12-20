@@ -89,9 +89,10 @@ export default {
   },
   methods: {
     async signIn() {
-      console.log("y ahora?");
+      console.log("entro en signin de singinvue");
       const response = await this.userStore.signIn(this.email, this.password);
       if (response === -2) {
+        console.log("error occured")
         this.errorOccured = true;
       }
     },

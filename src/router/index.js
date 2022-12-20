@@ -52,11 +52,8 @@ router.beforeEach( async (to) => {
   
   if (to.fullPath.includes("type=recovery")) {
     store.accessToken = to.fullPath.substring(to.fullPath.indexOf('='), to.fullPath.indexOf('&'))
-    alert("soy el recovery", store.accessToken)
-    console.log("soy el tokenk" , store.accessToken)
-    console.log("soy el full path", to.fullPath)
+    alert("soy el recovery")
     return "/Auth/newpass"
-
   }  
   if (to.meta.requiresAuth && !store.user) return "/Auth/signin";
  
