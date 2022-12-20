@@ -22,11 +22,16 @@ export default defineStore("user", {
         email: email,
         password: password,
       });
+      console.log(data)
       if (error) {
         this.alreadyRegistered = true;
         this.$router.push("/Auth/signin");
       }
-      if (data) {
+      if (data.user.identities.length === 0) {
+        this.alreadyRegistered = true;
+        this.$router.push("/Auth/signin");
+      }
+      if (data.user.identities.length > 0 ) {
         alert("Please note that a verification email has been sent to the email address you have registered.")
         this.$router.push("/Auth/signin");
       }

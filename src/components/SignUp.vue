@@ -27,29 +27,31 @@
         <div
             class="bg-zinc-700 my-2 rounded-lg w-[300px] flex flex-row justify-between items-center relative"
           >
-            <input v-if="viewPass"
+            <input v-if="!viewPass"
               type="password"
               v-model="password"
               name="password"
               id="password"
               placeholder="   Enter your new password"
               class="bg-zinc-700 px-3 py-3 w-[300px] rounded-lg placeholder:text-zinc-400 placeholder:text-[0.8em]"
-            />
-            <input v-if="!viewPass"
+              minlength="6" required
+              />
+            <input v-if="viewPass"
               type="text"
               v-model="password"
               name="password"
               id="password"
               placeholder="   Enter your new password"
               class="bg-zinc-700 w-[300px] px-3 py-3 rounded-lg placeholder:text-zinc-400 placeholder:text-[0.8em]"
-            />
-            <button v-if="viewPass" @click="switchViewPass"> 
+              minlength="6" required
+              />
+            <button v-if="!viewPass" @click="switchViewPass"> 
               <img
                 src="../assets/images/view.png"
                 alt="view"
                 class="w-[20px]  opacity-50 hover:opacity-100 absolute ml-[-40px] mt-[-10px]" 
             /></button>
-            <button v-if="!viewPass" @click="switchViewPass"> 
+            <button v-if="viewPass" @click="switchViewPass"> 
               <img
                 src="../assets/images/hide.png"
                 alt="view"
@@ -59,29 +61,31 @@
           <div
             class="bg-zinc-700 my-2 rounded-lg w-[300px] flex flex-row justify-between items-center relative"
           >
-            <input v-if="viewPass1"
+            <input v-if="!viewPass1"
               type="password"
               v-model="confirmPassword"
               name="confirmPassword"
               id="confirmPassword"
-              placeholder="   Enter your new password"
+              placeholder="   Confirm your new password"
               class="bg-zinc-700 px-3 py-3 w-[300px] rounded-lg placeholder:text-zinc-400 placeholder:text-[0.8em]"
-            />
-            <input v-if="!viewPass1"
+               required
+              />
+            <input v-if="viewPass1"
               type="text"
               v-model="confirmPassword"
               name="confirmPassword"
               id="confirmPassword"
               placeholder="   Confirm your new password"
               class="bg-zinc-700 w-[300px] px-3 py-3 rounded-lg placeholder:text-zinc-400 placeholder:text-[0.8em]"
-            />
-            <button v-if="viewPass1" @click="switchViewPass1"> 
+               required
+              />
+            <button v-if="!viewPass1" @click="switchViewPass1"> 
               <img
                 src="../assets/images/view.png"
                 alt="view"
                 class="w-[20px]  opacity-50 hover:opacity-100 absolute ml-[-40px] mt-[-10px]" 
             /></button>
-            <button v-if="!viewPass1" @click="switchViewPass1"> 
+            <button v-if="viewPass1" @click="switchViewPass1"> 
               <img
                 src="../assets/images/hide.png"
                 alt="view"
