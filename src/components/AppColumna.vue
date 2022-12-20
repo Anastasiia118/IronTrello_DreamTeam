@@ -63,7 +63,7 @@ export default {
     async createTask(title, status) {
       let orderNum = 1;
       if (this.columnArr.length > 0) {
-        orderNum = this.columnArr[this.columnArr.length - 1].order + 100;
+        orderNum = this.columnArr[this.columnArr.length - 1].order + 1;
       }
       const response2 = await this.tasksStore.createTask(
         this.userStore.user.id,
@@ -90,10 +90,27 @@ export default {
       console.log("task.status", task.status);
     },
     async onDropList(event, originTask) {
-      const taskOrder = event.dataTransfer.getData(`taskOrder`);
+      const clone = { ...originTask };
+      /* const taskOrder = event.dataTransfer.getData(`taskOrder`); */
       const taskID = event.dataTransfer.getData(`taskID`);
       const task = this.tasksStore.tasks.find((task) => task.id == taskID);
       const indexOriginTask = this.columnArr.indexOf(originTask);
+      const indexTookTask = this.columnArr.indexOf(task);
+      if (indexOriginTask < indexTookTask) {
+        this.columnArr
+          .filter((task) => task.order >= originTask.order)
+          .forEach((task) => {
+            this.tasksStore.updateOrder(task.id, task.order + 1);
+          });
+      } else {
+        this.columnArr
+        .filter((task) => task.order <= originTask.order)
+        .forEach((task) => {
+            this.tasksStore.updateOrder(task.id, task.order - 1);
+        })
+      }
+      await this.tasksStore.updateOrder(taskID, clone.order);
+      /* const indexOriginTask = this.columnArr.indexOf(originTask);
       const indexTookTask = this.columnArr.indexOf(task);
       const indexOfprev = this.columnArr.indexOf(originTask) - 2;
       const biggerOrder = originTask.order + 20;
@@ -115,8 +132,7 @@ export default {
         if (indexTookTask > indexOriginTask) {
           await this.tasksStore.updateOrder(originTask.id, biggerOrder);
         }
-      }
-      console.log("indexOriginTask", indexTookTask);
+      } */
     },
   },
 
