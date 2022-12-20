@@ -108,6 +108,7 @@ export default {
   },
   mounted() {
     this.userStore.fetchUser();
+    //console.log(this.$route.path)
   }
 };
 </script>

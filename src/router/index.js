@@ -46,14 +46,19 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach( async (to) => {
+router.beforeEach( async (to ,from) => {
   const store = userStore();
   await store.fetchUser();
-   /* if (this.$route.path.includes("type=recovery")) {
+  const url = to.params
+  console.log("url", url)
+  console.log("to", to.fullPath.includes('Auth'))
+  if (to.fullPath.includes("type=recovery")) {
     alert("soy el recovery")
-  }  */ 
+    
+  }  
   if (to.meta.requiresAuth && !store.user) return "/Auth/signin";
  
 });
+
 
 export default router;
