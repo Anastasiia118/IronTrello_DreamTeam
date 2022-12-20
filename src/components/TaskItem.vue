@@ -47,10 +47,6 @@ export default {
       const rs = await this.tasksStore.updateTask(this.task.id, this.editTitle);
     },
     viewEdits() {
-       /* if (this.viewEdit === false) {
-        this.viewEdit = true;
-      } else if (this.viewEdit === true) {
-        this.viewEdit = false; */
         this.viewEdit = !this.viewEdit
       },
     startDrag(event, task,){

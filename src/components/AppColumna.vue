@@ -1,10 +1,13 @@
 <template>
-  <div class="columna" @drop="onDrop($event,columnStatus)"
-       @dragenter.prevent
-       @dragover.prevent>
-  <h2 v-if="columnStatus === 1"> Ongoing</h2>
-  <h2 v-if="columnStatus === 0"> To Do</h2>
-  <h2 v-if="columnStatus === 2"> Done</h2>
+  <div
+    class="columna"
+    @drop="onDrop($event, columnStatus)"
+    @dragenter.prevent
+    @dragover.prevent
+  >
+    <h2 v-if="columnStatus === 1">Ongoing</h2>
+    <h2 v-if="columnStatus === 0">To Do</h2>
+    <h2 v-if="columnStatus === 2">Done</h2>
     <div v-for="(task, index) in columnArr" @drop="onDropList($event, task)">
       <TaskItem :task="task" />
     </div>
@@ -24,9 +27,12 @@
       <div class="pulldownBtns justify-between flex flex-col">
         <button
           type="submit"
-          @click="createTask(title, columnStatus, orderNum);
+          @click="
+            createTask(title, columnStatus);
             viewField();
-            deleteText();">
+            deleteText();
+          "
+        >
           Add
         </button>
         <button type="reset" @click="deleteText()">Reset</button>
@@ -51,54 +57,66 @@ export default {
     return {
       title: "",
       toggleField: false,
-      orderNum: -1
     };
   },
   methods: {
-    async takeTasks() {
-      const response = await this.tasksStore.fetchTasks();
-      this.tasks = this.tasksStore.tasks;
-    }, 
-    async createTask(title, status, order) {
-        if(order >= 1){
-           order = this.columnArr.length + 1;
-        } else {
-            order ++
-        }
-        this.orderNum = order
+    async createTask(title, status) {
+      let orderNum = 1;
+      if (this.columnArr.length > 0) {
+        orderNum = this.columnArr[this.columnArr.length - 1].order + 100;
+      }
       const response2 = await this.tasksStore.createTask(
         this.userStore.user.id,
         title,
         status,
-        order, 
+        orderNum
       );
       const response3 = await this.tasksStore.fetchTasks();
-      console.log("order:", order)
+      //this.columnArr[0] = this.columnArr[1]
+      console.log("array number:", this.columnArr);
     },
     viewField() {
       this.toggleField = !this.toggleField;
     },
     deleteText() {
-        this.title = "";
+      this.title = "";
     },
-   async onDrop(event, status){
-        const taskID = event.dataTransfer.getData(`taskID`);
-        const task = this.tasksStore.tasks.find((task) => 
-         task.id == taskID
-        )
-        console.log("es task",taskID)
-        task.status = status
-        await this.tasksStore.updateStatus(taskID, task.status);
-        console.log("task.status", task.status)
-
+    async onDrop(event, status) {
+      const taskID = event.dataTransfer.getData(`taskID`);
+      const task = this.tasksStore.tasks.find((task) => task.id == taskID);
+      console.log("es task", taskID);
+      task.status = status;
+      await this.tasksStore.updateStatus(taskID, task.status);
+      console.log("task.status", task.status);
     },
-    async onDropList(event, originTask){
-        const taskOrder = event.dataTransfer.getData(`taskOrder`);
-        const taskID = event.dataTransfer.getData(`taskID`);
-    
-        await this.tasksStore.updateOrder(taskID,originTask.order)
-        await this.tasksStore.updateOrder(originTask.id, taskOrder)
-        console.log("task",originTask)
+    async onDropList(event, originTask) {
+      const taskOrder = event.dataTransfer.getData(`taskOrder`);
+      const taskID = event.dataTransfer.getData(`taskID`);
+      const task = this.tasksStore.tasks.find((task) => task.id == taskID);
+      const indexOriginTask = this.columnArr.indexOf(originTask);
+      const indexTookTask = this.columnArr.indexOf(task);
+      const indexOfprev = this.columnArr.indexOf(originTask) - 2;
+      const biggerOrder = originTask.order + 20;
+      const newOrder = originTask.order - 20;
+      const prevOrder = newOrder - 20;
+      await this.tasksStore.updateOrder(taskID, originTask.order);
+      if (originTask.order > taskOrder) {
+        if (this.columnArr[indexOfprev]) {
+          await this.tasksStore.updateOrder(
+            this.columnArr[indexOfprev].id,
+            prevOrder
+          );
+        }
+        await this.tasksStore.updateOrder(originTask.id, newOrder);
+      } else if (originTask.order < taskOrder) {
+        const newOrder = originTask.order + 20;
+        await this.tasksStore.updateOrder(originTask.id, newOrder);
+      } else if ((originTask.order = taskOrder)) {
+        if (indexTookTask > indexOriginTask) {
+          await this.tasksStore.updateOrder(originTask.id, biggerOrder);
+        }
+      }
+      console.log("indexOriginTask", indexTookTask);
     },
   },
 
@@ -106,8 +124,7 @@ export default {
     TaskItem,
   },
   mounted() {
-    this.tasksStore.fetchTasks();
-    console.log("columnArr", this.columnArr)
+    console.log("columnArr", this.columnArr);
     //hacer el loading
   },
 };
@@ -121,11 +138,10 @@ export default {
   padding: 16px;
   min-width: 352px;
   margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);;
-
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .columna h2 {
-  color:#ea70ff;
+  color: #ea70ff;
   margin-bottom: 15px;
 }
 .addTask {

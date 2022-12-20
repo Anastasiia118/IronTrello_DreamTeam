@@ -18,7 +18,7 @@ export default defineStore("tasks", {
 
         .select("*")
 
-        .order("order", { ascending: false });
+        .order("order", { ascending: true });
 
       this.tasks = tasks;    
     console.log(this.tasks)
