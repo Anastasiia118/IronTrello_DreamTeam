@@ -13,7 +13,7 @@
       class="bg-zinc-800 min-w-[350px] min-h-fit flex flex-col justify-center items-center rounded-[50px]"
     >
       <form action="submit" @submit.prevent="signUp">
-        <h1 class="text-violet-500 text-center mb-10 pb-[20px] pt-[200px])">Ironello</h1>
+        <h1 class="text-violet-500 text-center mb-10 pb-[10px] pt-[200px])">Ironello</h1>
         <p class="mb-2 text-center text-xl">Create a new account</p>
         <div class="text-center flex flex-col justify-center items-center">
         <input

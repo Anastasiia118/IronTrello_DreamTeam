@@ -90,7 +90,7 @@
         </router-link>
        
       </div>
-      <div class="opacity-30 w-[300px] flex flex-row items-center justify-between">
+      <div class="opacity-30 w-[300px] flex flex-row items-center justify-between my-3">
         <hr class="w-[120px]">
           <p class="text-sm"> OR</p>
           <hr class="w-[120px]">
