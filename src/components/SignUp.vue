@@ -22,7 +22,7 @@
           name="email"
           id="email"
           placeholder="   Enter your email"
-          class="bg-zinc-700 py-3 px-3 my-4 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
+          class="bg-zinc-700 py-3 px-3 my-2 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
         />
         
         <input
@@ -31,8 +31,16 @@
           name="password"
           id="password"
           placeholder="   Enter your password"
-          class="bg-zinc-700 py-3 px-3 my-4 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
+          class="bg-zinc-700 py-3 px-3 my-2 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
         />
+        <input
+            type="password"
+            v-model="confirmpassword"
+            name="confirmpassword"
+            id="confirmpassword"
+            placeholder="   Confirm your new password"
+            class="bg-zinc-700 py-3 px-3 my-2 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
+          />
       </div>
         <div class="text-center">
           <button
@@ -79,6 +87,7 @@ export default {
     return {
       email: "",
       password: "",
+      confirmpassword: "",
     };
   },
   computed: {
@@ -86,7 +95,15 @@ export default {
   },
   methods: {
     signUp() {
-      this.userStore.signUp(this.email, this.password);
+      
+      if (this.password.length>5 && this.password === this.confirmpassword) {
+            this.userStore.signUp(this.email, this.password)
+        } else if (this.password.length<5) {
+            alert("The password must have min. 6 characters")
+        } else if (this.password !== this.confirmpassword) {
+          alert("The confirmation password is not correct, please enter the password again")
+        }
+      
     },
     async signInGit() {
       const response = await this.userStore.signInWithGitHub();

@@ -75,11 +75,13 @@
     },
     methods: {
       async confirmPass(password, confirmpassword) {
-        if (password.length>0 && password === confirmpassword) {
-            alert("passwords are the same")
+        if (password.length>5 && password === confirmpassword) {
+            alert("Your password is succesfully updated.")
           await this.userStore.sendNewPass(password)
-        } else {
-            alert("The passwords are not the same, please enter the password again")
+        } else if (password.length<5) {
+            alert("The password must have min. 6 characters")
+        } else if (password !== confirmpassword) {
+          alert("The confirmation password is not correct, please enter the password again")
         }
       }
     },

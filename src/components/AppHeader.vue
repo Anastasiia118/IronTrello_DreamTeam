@@ -27,7 +27,7 @@
       <p class="mr-3 text-zinc-100 text-xs md:block hidden">
         Welcome,
         {{
-          userStore.user.email.substring(0, userStore.user.email.indexOf("@"))
+          userStore.showName
         }}
       </p>
       <button
