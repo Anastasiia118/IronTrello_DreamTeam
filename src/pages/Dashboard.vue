@@ -7,7 +7,10 @@
       <AppColumna :columnArr="tasksStore.todoArr" :columnStatus="0" />
       <AppColumna :columnArr="tasksStore.ongoingArr" :columnStatus="1" />
       <AppColumna :columnArr="tasksStore.doneArr" :columnStatus="2" />
-
+      <div v-for="(column, index) in columnsStore.columns">
+        
+        <AppColumna1 :column="column" />
+      </div>
     </div>
     <AppFooter />
   </div>
@@ -23,6 +26,7 @@ import columnsStore from "../stores/columns.js";
 import AppHeader from "../components/AppHeader.vue";
 import AppFooter from "../components/AppFooter.vue";
 import AppColumna from "../components/AppColumna.vue";
+import AppColumna1 from "../components/AppColumna1.vue";
 
 export default {
   computed: {
@@ -40,12 +44,12 @@ export default {
     AppHeader,
     AppFooter,
     AppColumna,
+    AppColumna1,
   },
   mounted() {
     this.tasksStore.fetchTasks();
     this.columnsStore.fetchColumns();
-    console.log("colums", this.columnsStore[0]);
-
+    console.log("columns 0", this.columnsStore.columns);
   },
 };
 </script>
