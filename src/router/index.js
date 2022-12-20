@@ -46,15 +46,17 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach( async (to ,from) => {
+router.beforeEach( async (to) => {
   const store = userStore();
   await store.fetchUser();
-  const url = to.params
-  console.log("url", url)
-  console.log("to", to.fullPath.includes('Auth'))
+  
   if (to.fullPath.includes("type=recovery")) {
-    alert("soy el recovery")
-    
+    store.accessToken = to.fullPath.substring(to.fullPath.indexOf('='), to.fullPath.indexOf('&'))
+    alert("soy el recovery", store.accessToken)
+    console.log("soy el tokenk" , store.accessToken)
+    console.log("soy el full path", to.fullPath)
+    return "/Auth/newpass"
+
   }  
   if (to.meta.requiresAuth && !store.user) return "/Auth/signin";
  

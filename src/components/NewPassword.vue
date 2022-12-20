@@ -36,8 +36,8 @@
           <input
             type="password"
             v-model="confirmpassword"
-            name="password"
-            id="password"
+            name="confirmpassword"
+            id="confirmpassword"
             placeholder="   Confirm your new password"
             class="bg-zinc-700 py-3 px-3 my-4 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
           />
@@ -74,10 +74,10 @@
       ...mapStores(userStore),
     },
     methods: {
-      confirmPass(password, confirmpassword) {
-        if (password === this.confirmpassword) {
+      async confirmPass(password, confirmpassword) {
+        if (password.length>0 && password === confirmpassword) {
             alert("passwords are the same")
-           const path = this.$route.path
+          await this.userStore.sendNewPass(password)
         } else {
             alert("The passwords are not the same, please enter the password again")
         }
