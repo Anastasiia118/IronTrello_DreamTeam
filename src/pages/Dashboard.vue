@@ -4,12 +4,12 @@
     <h1>Dashboard</h1>
 
     <div class="columns-wraper items-start">
-      <AppColumna :columnArr="tasksStore.todoArr" :columnStatus="0" />
+      <!-- <AppColumna :columnArr="tasksStore.todoArr" :columnStatus="0" />
       <AppColumna :columnArr="tasksStore.ongoingArr" :columnStatus="1" />
-      <AppColumna :columnArr="tasksStore.doneArr" :columnStatus="2" />
+      <AppColumna :columnArr="tasksStore.doneArr" :columnStatus="2" /> -->
       <div v-for="(column, index) in columnsStore.columns">
         
-        <AppColumna1 :column="column" />
+        <AppColumna1 :column="column"/>
       </div>
     </div>
     <AppFooter />
@@ -49,7 +49,7 @@ export default {
   mounted() {
     this.tasksStore.fetchTasks();
     this.columnsStore.fetchColumns();
-    console.log("columns 0", this.columnsStore.columns);
+    console.log("column 0 status", );
   },
 };
 </script>

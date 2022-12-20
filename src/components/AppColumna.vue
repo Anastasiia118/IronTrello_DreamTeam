@@ -87,7 +87,7 @@ export default {
       console.log("es task", taskID);
       task.status = status;
       await this.tasksStore.updateStatus(taskID, task.status);
-      console.log("task.status", task.status);
+      console.log("task", task);
     },
     async onDropList(event, originTask) {
       const clone = { ...originTask };
