@@ -26,27 +26,61 @@
           id="email"
           placeholder="   Enter your email"
           class="bg-zinc-700 py-3 px-3 my-3 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
-        />
-
-        <input
+        required
+          />
+        <div
+            class="bg-zinc-700 my-2 rounded-lg w-[300px] flex flex-row justify-between items-center relative"
+          >
+            <input v-if="!viewPass"
+              type="password"
+              v-model="password"
+              name="password"
+              id="password"
+              placeholder="   Enter your new password"
+              class="bg-zinc-700 px-3 py-3 w-[300px] rounded-lg placeholder:text-zinc-400 placeholder:text-[0.8em]"
+            minlength="6" required
+              />
+            <input v-if="viewPass"
+              type="text"
+              v-model="password"
+              name="password"
+              id="password"
+              placeholder="   Enter your new password"
+              class="bg-zinc-700 w-[300px] px-3 py-3 rounded-lg placeholder:text-zinc-400 placeholder:text-[0.8em]"
+              minlength="6" required
+              />
+            <button v-if="!viewPass" @click="switchViewPass"> 
+              <img
+                src="../assets/images/view.png"
+                alt="view"
+                class="w-[20px]  opacity-50 hover:opacity-100 absolute ml-[-40px] mt-[-10px]" 
+            /></button>
+            <button v-if="viewPass" @click="switchViewPass"> 
+              <img
+                src="../assets/images/hide.png"
+                alt="view"
+                class="w-[20px]  opacity-50 hover:opacity-100 absolute ml-[-40px] mt-[-10px]" 
+            /></button>
+          </div>
+        <!-- <input
           type="password"
           v-model="password"
           name="password"
           id="password"
           placeholder="   Enter your password"
           class="bg-zinc-700 py-3 px-3 my-3 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
-        /> 
+        />  -->
       </div>
       <div class="text-center">
         <button
           type="submit"
           class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-8 py-2.5 text-center my-3 w-full"
         >
-          Log In!
+          Log In
         </button>
       </div>
       </form>
-      <div class="text-xs text-violet-400 hover:text-blue-40"> <button > Forgot your password? </button></div>
+      <div class="text-xs text-violet-400 hover:text-blue-40"> <button type="submit" @click="resetPass(email)"> Forgot your password? </button></div>
       <div v-if="errorOccured" class="border-[1px] border-purple-400 px-4 py-3 my-3">Oops! Your email or password is wrong!</div>
     
       <div class="mt-4 mb-4">
@@ -56,7 +90,7 @@
         </router-link>
        
       </div>
-      <div class="opacity-30 w-[300px] flex flex-row items-center justify-between">
+      <div class="opacity-30 w-[300px] flex flex-row items-center justify-between my-3">
         <hr class="w-[120px]">
           <p class="text-sm"> OR</p>
           <hr class="w-[120px]">
@@ -82,6 +116,7 @@ export default {
       email: "",
       password: "",
       errorOccured: false,
+      viewPass: false,
     };
   },
   computed: {
@@ -89,9 +124,10 @@ export default {
   },
   methods: {
     async signIn() {
-      console.log("y ahora?");
+      console.log("entro en signin de singinvue");
       const response = await this.userStore.signIn(this.email, this.password);
       if (response === -2) {
+        console.log("error occured")
         this.errorOccured = true;
       }
     },
@@ -99,10 +135,20 @@ export default {
       console.log("entro");
       const response = await this.userStore.signInWithGitHub();
       this.$router.replace("/");
-    }
+    },
+    async resetPass(email) {
+      console.log("entro en resert signin")
+      const response = await this.userStore.resetPass(email)
+    alert("Please check your email for email verification")
+    },
+    switchViewPass() {
+      
+      this.viewPass = !this.viewPass;
+    },
   },
   mounted() {
     this.userStore.fetchUser();
+    
   }
 };
 </script>

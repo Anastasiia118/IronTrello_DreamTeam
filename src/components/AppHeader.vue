@@ -25,16 +25,16 @@
     </div>
     <div class="mr-[20px] flex flex-row items-center">
       <p class="mr-3 text-zinc-100 text-xs md:block hidden">
-        Welcome,
+        Welcome
         {{
-          userStore.user.email.substring(0, userStore.user.email.indexOf("@"))
-        }}
+          userStore.showName
+        }}!
       </p>
       <button
         @click="logOut()"
         class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-6 py-2.5 text-center my-3 md:block hidden"
       >
-        Log out!
+        Log out
       </button>
       
     </div>
@@ -49,7 +49,7 @@
         @click="logOut()"
         class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm my-2 px-4 py-1 text-center mr-3"
       >
-        Log out!
+        Log out
       </button></li>
       
   </ul> </div>
