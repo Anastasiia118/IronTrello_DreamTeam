@@ -88,22 +88,7 @@
                 class="w-[20px]  opacity-50 hover:opacity-100 absolute ml-[-40px] mt-[-10px]" 
             /></button>
           </div>
-        <!-- <input
-          type="password"
-          v-model="password"
-          name="password"
-          id="password"
-          placeholder="   Enter your password"
-          class="bg-zinc-700 py-3 px-3 my-2 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
-        />
-        <input
-            type="password"
-            v-model="confirmPassword"
-            name="confirmpassword"
-            id="confirmpassword"
-            placeholder="   Confirm your new password"
-            class="bg-zinc-700 py-3 px-3 my-2 rounded-lg w-[300px] placeholder:text-zinc-400 placeholder:text-[0.8em]"
-          /> -->
+       
       </div>
         <div class="text-center">
           <button
