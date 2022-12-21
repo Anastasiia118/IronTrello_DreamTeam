@@ -2,14 +2,26 @@
   <AppHeader />
   <div class="dashboard-wraper">
     <h1>Dashboard</h1>
+    <diV>
+      <button type="submit" @click="addNewColumn(title, count)">
+        Create new column
+      </button>
+      <textarea
+        v-model="title"
+        name="textarea"
+        id="textarea"
+        cols="30"
+        rows="3"
+        placeholder="Enter the title of your column"
+      ></textarea>
+    </diV>
 
     <div class="columns-wraper items-start">
       <!-- <AppColumna :columnArr="tasksStore.todoArr" :columnStatus="0" />
       <AppColumna :columnArr="tasksStore.ongoingArr" :columnStatus="1" />
       <AppColumna :columnArr="tasksStore.doneArr" :columnStatus="2" /> -->
       <div v-for="(column, index) in columnsStore.columns">
-        
-        <AppColumna1 :column="column"/>
+        <AppColumna1 :column="column" />
       </div>
     </div>
     <AppFooter />
@@ -29,6 +41,11 @@ import AppColumna from "../components/AppColumna.vue";
 import AppColumna1 from "../components/AppColumna1.vue";
 
 export default {
+  data() {
+    return {
+      count: -1,
+    };
+  },
   computed: {
     ...mapStores(tasksStore),
     ...mapStores(userStore),
@@ -38,6 +55,17 @@ export default {
     async takeTasks() {
       const response = await this.tasksStore.fetchTasks();
       this.tasks = this.tasksStore.tasks;
+    },
+    async addNewColumn(title, status) {
+      console.log("entro en create col dash")
+      ++this.count
+      
+      console.log(this.count)
+      const response = await this.columnsStore.createColumn(
+        this.userStore.user.id,
+        title,
+        status
+      );
     },
   },
   components: {
@@ -49,7 +77,7 @@ export default {
   mounted() {
     this.tasksStore.fetchTasks();
     this.columnsStore.fetchColumns();
-    console.log("column 0 status", );
+    console.log("column 0 status");
   },
 };
 </script>

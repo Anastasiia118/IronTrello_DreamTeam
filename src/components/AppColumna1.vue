@@ -6,6 +6,7 @@
     @dragover.prevent
   >
     <h2>{{ column.title }}</h2>
+    <p>{{ column.status }}</p>
 
     <div
       v-for="(task, index) in filteredArrbyStatus"
@@ -30,7 +31,7 @@
         <button
           type="submit"
           @click="
-            createTask(title, columnStatus);
+            createTask(title, this.column.status);
             viewField();
             deleteText();
           "

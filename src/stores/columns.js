@@ -24,12 +24,14 @@ actions: {
         console.log(this.columns)
     },
 
-    async createColumn(userId,title) {
+    async createColumn(userId,title,status) {
+      console.log("entro en create col column js")
         const response = await supabase
         .from("columns")
         .insert({
           'user_id': userId,
           'title': title,
+          'status': status,
 
          });
       },

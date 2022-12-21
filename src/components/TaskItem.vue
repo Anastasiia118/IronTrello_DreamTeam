@@ -1,10 +1,10 @@
 <template>
   <div class="task-wrapper" draggable="true" @dragstart="startDrag($event,task)">
     <p class="task-desc" >{{task.order}} . {{task.title}}</p>
-<div class="statusTask"> Status: 
+<!-- <div class="statusTask"> Status: 
   <span v-if="task.status === 1"> Ongoing</span>
   <span v-if="task.status === 0"> To Do</span>
-  <span v-if="task.status === 2"> Done</span></div>
+  <span v-if="task.status === 2"> Done</span></div> -->
 <button id="delete-btn" type="submit" @click="deleteTask">Delete</button>
 <button id="edit-btn" type="sumbit" @click="viewEdits()">Edit Task</button>
 <div class="edit-box items-start" v-if="viewEdit === true">
