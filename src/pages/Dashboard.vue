@@ -3,7 +3,7 @@
   <div class="dashboard-wraper">
   <div class="dashboard-title-box flex">
     <h1>Dashboard</h1>
-    <button id="deleteAll-btn">Delete All</button>
+    <button id="deleteAll-btn" type="submit" @click="deleteAll()">Delete All</button>
   </div>
     <div class="newColumnBox">
       <button class="newColumn-btn" type="button" @click="openAddColumn(); deleteTextColumn()">New Column</button>
@@ -79,6 +79,11 @@ export default {
     },
     deleteTextColumn() {
       this.title = "";
+    },
+    async deleteAll(){
+      const response = await this.tasksStore.deleteAllTasks(this.userStore.user.id)
+      const new_responce = await this.columnsStore.deleteAllColumns(this.userStore.user.id)
+      console.log("this.columnsStore.user_id:", this.userStore.user.id)
     },
   },
   components: {

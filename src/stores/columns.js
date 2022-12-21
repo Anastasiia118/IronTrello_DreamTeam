@@ -44,6 +44,15 @@ actions: {
        // console.log("voy a hacer fetch en delete")
         const response2 = await this.fetchColumns();
       },
+      async deleteAllColumns(userId) {
+        //console.log("entro en delete de columnjs")
+        const response = await supabase
+        .from("columns")
+        .delete()
+        .match({'user_id': userId})
+       // console.log("voy a hacer fetch en delete")
+        const response2 = await this.fetchColumns();
+      },
       async updateColTitle(columnId, editTitle) {
         // console.log("entro en updateTask column js")
          const {error} = await supabase

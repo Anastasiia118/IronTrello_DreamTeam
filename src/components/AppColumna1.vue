@@ -79,7 +79,6 @@ export default {
     },
     async deleteColumnTasks() {
       const response4 = await this.tasksStore.deleteColTasks(this.column.status);
-      console.log("col status:",this.column.status)
     },
     async createTask(title, status) {
       let orderNum = 1;
