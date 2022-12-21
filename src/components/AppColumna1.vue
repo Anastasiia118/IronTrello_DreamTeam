@@ -106,32 +106,34 @@ export default {
     async onDrop(event, status) {
       const taskID = event.dataTransfer.getData(`taskID`);
       const task = this.tasksStore.tasks.find((task) => task.id == taskID);
-      console.log("es task", taskID);
+      //console.log("es task de ondrop", taskID);
       task.status = status;
       await this.tasksStore.updateStatus(taskID, task.status);
-      console.log("task", task.status);
+      //console.log("task de ondrop", task.status);
     },
     async onDropList(event, originTask) {
       const clone = { ...originTask };
       /* const taskOrder = event.dataTransfer.getData(`taskOrder`); */
-      const taskID = event.dataTransfer.getData(`taskID`);
-      const task = this.tasksStore.tasks.find((task) => task.id == taskID);
-      const indexOriginTask = this.filteredArrbyStatus.indexOf(originTask);
-      const indexTookTask = this.filteredArrbyStatus.indexOf(task);
+      const taskID = await event.dataTransfer.getData(`taskID`);
+      const task = await this.tasksStore.tasks.find((task) => task.id == taskID);
+      const indexOriginTask = await this.filteredArrbyStatus.indexOf(originTask);
+      const indexTookTask = await this.filteredArrbyStatus.indexOf(task);
       if (indexOriginTask < indexTookTask) {
         this.filteredArrbyStatus
-          .filter((task) => task.order >= originTask.order)
-          .forEach((task) => {
-            this.tasksStore.updateOrder(task.id, task.order + 1);
+          .filter((task) => task.order >= originTask.order && task.id != taskID)
+          .forEach(async (task) => {
+            await this.tasksStore.updateOrder(task.id, task.order + 1);
           });
       } else {
         this.filteredArrbyStatus
-          .filter((task) => task.order <= originTask.order)
-          .forEach((task) => {
-            this.tasksStore.updateOrder(task.id, task.order - 1);
+          .filter((task) => task.order <= originTask.order && task.id != taskID)
+          .forEach(async (task) => {
+            await this.tasksStore.updateOrder(task.id, task.order - 1);
           });
       }
       await this.tasksStore.updateOrder(taskID, clone.order);
+     // const response2 = await this.tasksStore.fetchTasks(); 
+
       /* const indexOriginTask = this.columnArr.indexOf(originTask);
         const indexTookTask = this.columnArr.indexOf(task);
         const indexOfprev = this.columnArr.indexOf(originTask) - 2;

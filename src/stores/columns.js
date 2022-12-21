@@ -41,6 +41,9 @@ actions: {
         .from("columns")
         .delete()
         .match({'id': columnId})
+        this.columns.forEach((column, index) => {
+          column.status = index
+        } )
        // console.log("voy a hacer fetch en delete")
         const response2 = await this.fetchColumns();
       },
