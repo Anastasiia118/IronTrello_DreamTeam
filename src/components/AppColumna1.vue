@@ -5,10 +5,12 @@
     @dragenter.prevent
     @dragover.prevent
   >
-    <button id="btn-DelColumn" type="submit" @click="delColumn()">
-      Delete column
-    </button>
-    <h2>{{ column.title }}</h2>
+    <div class="titleColumn-box">
+      <h2>{{ column.title }}</h2>
+      <button id="btn-DelColumn" type="submit" @click="delColumn(); deleteColumnTasks()">
+        Delete column
+      </button>
+    </div>
     <div
       v-for="(task, index) in filteredArrbyStatus"
       @drop="onDropList($event, task)"
@@ -71,9 +73,13 @@ export default {
     };
   },
   methods: {
-    async delColumn(){
-      const resp =  await this.columnsStore.deleteColumn(this.column.id)
-      console.log("column id:",this.column.id)
+    async delColumn() {
+      const resp = await this.columnsStore.deleteColumn(this.column.id);
+      console.log("column id:", this.column.id);
+    },
+    async deleteColumnTasks() {
+      const response4 = await this.tasksStore.deleteColTasks(this.column.status);
+      console.log("col status:",this.column.status)
     },
     async createTask(title, status) {
       let orderNum = 1;
@@ -175,7 +181,8 @@ export default {
 }
 .columna h2 {
   color: #ea70ff;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  font-size: 18px;
 }
 .addTask {
   font-style: normal;
@@ -222,14 +229,21 @@ export default {
   margin-bottom: 5px;
   border-radius: 8px;
 }
+.titleColumn-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
 #btn-DelColumn {
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
   color: #4b69ff;
-  padding: 3px 7px;
-  background-color: #ffffff;
-  border-radius: 3px;
+  padding: 8px 7px; 
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  cursor: pointer;
+  height: fit-content;
 }
 </style>

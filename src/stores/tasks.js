@@ -44,6 +44,15 @@ export default defineStore("tasks", {
      // console.log("voy a hacer fetch en delete")
       const response2 = await this.fetchTasks();
     },
+    async deleteColTasks(status) {
+      //console.log("entro en delete de taskjs")
+      const response = await supabase
+      .from("tasks")
+      .delete()
+      .match({'status': status})
+     // console.log("voy a hacer fetch en delete")
+      const response2 = await this.fetchTasks();
+    },
     
     async updateTask(taskId, editTitle) {
      // console.log("entro en updateTask tasks js")

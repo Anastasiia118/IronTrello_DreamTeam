@@ -62,7 +62,7 @@ export default {
 </script>
 <style>
 .task-wrapper{
-  /* width: 320px; */
+  max-width: 320px; 
   background-color: rgba(255, 255, 255, 0.06);;
   border-radius: 12px;
   padding: 20px;
@@ -78,7 +78,7 @@ color: rgba(255, 255, 255, 0.5);
 margin-bottom: 10px;
 }
 .task-desc{
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   font-style: normal;
 font-weight: 500;
 font-size: 16px;

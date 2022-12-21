@@ -1,9 +1,13 @@
 <template>
   <AppHeader />
   <div class="dashboard-wraper">
+  <div class="dashboard-title-box flex">
     <h1>Dashboard</h1>
-    <button type="button" @click="openAddColumn()">New Column</button>
-    <div class="createCol" v-if="viewAddColumn">
+    <button id="deleteAll-btn">Delete All</button>
+  </div>
+    <div class="newColumnBox">
+      <button class="newColumn-btn" type="button" @click="openAddColumn(); deleteTextColumn()">New Column</button>
+    <div class="createCol items-start" v-if="viewAddColumn" >
       <textarea 
         v-model="title"
         name="textarea"
@@ -12,11 +16,11 @@
         rows="3"
         placeholder="Enter the title of your column"
       ></textarea>
-      <button class="btnCreateColumn"  type="submit" @click="addNewColumn(title, columnsStore.columns.length)">
-        Create new column
+      <button id="btnCreateColumn"  type="submit" @click="addNewColumn(title, columnsStore.columns.length); openAddColumn()">
+         Add new column
       </button>
     </div>
-
+    </div>
     <div class="columns-wraper items-start">
       <!-- <AppColumna :columnArr="tasksStore.todoArr" :columnStatus="0" />
       <AppColumna :columnArr="tasksStore.ongoingArr" :columnStatus="1" />
@@ -45,6 +49,7 @@ export default {
   data() {
     return {
       viewAddColumn: false,
+      textColumn: "",
     };
   },
   computed: {
@@ -71,6 +76,9 @@ export default {
     },
     openAddColumn(){
       this.viewAddColumn = !this.viewAddColumn;
+    },
+    deleteTextColumn() {
+      this.title = "";
     },
   },
   components: {
@@ -108,7 +116,6 @@ h1 {
 .createCol{
   display: flex;
   flex-direction: column;
-  align-items: start;
 }
 .createCol textarea {
   outline: #292b31;
@@ -117,6 +124,53 @@ h1 {
   font-family: "Exo 2";
   color: #24262c;
   margin-right: 5px;
+  margin-bottom: 3px;
   height: 66px;
+}
+.newColumnBox{
+  margin-bottom: 15px;
+  
+}
+.newColumn-btn{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #fff;
+  padding: 8px 7px; 
+  background-color: #4B69FF;
+  border-radius: 7px;
+  cursor: pointer;
+  height: fit-content;
+  margin-bottom: 10px;
+}
+#btnCreateColumn {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #fff;
+  padding: 8px 7px; 
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  cursor: pointer;
+  height: fit-content;
+  margin-top: 10px;
+}
+.dashboard-title-box{
+  justify-content: space-between;
+}
+#deleteAll-btn{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #fff;
+  padding: 8px 7px; 
+  background-color: #ea70ff;
+  border-radius: 7px;
+  cursor: pointer;
+  height: fit-content;
+  margin-bottom: 10px;
 }
 </style>
