@@ -24,7 +24,7 @@ actions: {
         console.log(this.columns)
     },
 
-    async createColumn(userId,title,status) {
+    async createColumn(userId,title,status, order) {
       console.log("entro en create col column js")
         const response = await supabase
         .from("columns")
@@ -32,7 +32,7 @@ actions: {
           'user_id': userId,
           'title': title,
           'status': status,
-
+          'order': order
          });
       },
       async deleteColumn(columnId) {
@@ -41,9 +41,9 @@ actions: {
         .from("columns")
         .delete()
         .match({'id': columnId})
-        this.columns.forEach((column, index) => {
+       /*  this.columns.forEach((column, index) => {
           column.status = index
-        } )
+        } ) */
        // console.log("voy a hacer fetch en delete")
         const response2 = await this.fetchColumns();
       },

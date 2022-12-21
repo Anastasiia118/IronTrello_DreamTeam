@@ -16,7 +16,7 @@
         rows="3"
         placeholder="Enter the title of your column"
       ></textarea>
-      <button id="btnCreateColumn"  type="submit" @click="addNewColumn(title, columnsStore.columns.length); openAddColumn()">
+      <button id="btnCreateColumn"  type="submit" @click="addNewColumn(title, statusCount); openAddColumn()">
          Add new column
       </button>
     </div>
@@ -50,6 +50,7 @@ export default {
     return {
       viewAddColumn: false,
       textColumn: "",
+      statusCount: 0
     };
   },
   computed: {
@@ -63,15 +64,18 @@ export default {
       this.tasks = this.tasksStore.tasks;
     },
     async addNewColumn(title, status) {
-      console.log("entro en create col dash")
-      ++this.count
+      let orderNum = 1;
+      if (this.columnsStore.columns.length > 0) {
+        orderNum = this.columnsStore.columns[this.columnsStore.columns.length-1].order + 1;
+      }
       
-      console.log(this.count)
       const response = await this.columnsStore.createColumn(
         this.userStore.user.id,
         title,
-        status
+        status,
+        orderNum
       );
+      this.statusCount +=1;
       this.columnsStore.fetchColumns();
     },
     openAddColumn(){
