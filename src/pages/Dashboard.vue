@@ -3,8 +3,9 @@
   <div class="dashboard-wraper">
     <h1>Dashboard</h1>
     <diV>
-      <button type="submit" @click="addNewColumn(title, count)">
+      <button type="submit" @click="addNewColumn(title, columnsStore.columns.length)">
         Create new column
+       
       </button>
       <textarea
         v-model="title"
