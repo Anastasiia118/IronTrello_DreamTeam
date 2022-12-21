@@ -5,9 +5,10 @@
     @dragenter.prevent
     @dragover.prevent
   >
+    <button id="btn-DelColumn" type="submit" @click="delColumn()">
+      Delete column
+    </button>
     <h2>{{ column.title }}</h2>
-    <p>{{ column.status }}</p>
-
     <div
       v-for="(task, index) in filteredArrbyStatus"
       @drop="onDropList($event, task)"
@@ -49,11 +50,13 @@ import { mapStores } from "pinia";
 import tasksStore from "../stores/tasks.js";
 import TaskItem from "../components/TaskItem.vue";
 import userStore from "../stores/user.js";
+import columnsStore from "../stores/columns.js";
 
 export default {
   computed: {
     ...mapStores(tasksStore),
     ...mapStores(userStore),
+    ...mapStores(columnsStore),
     filteredArrbyStatus() {
       return this.tasksStore.tasks.filter(
         (task) => task.status === this.column.status
@@ -68,6 +71,10 @@ export default {
     };
   },
   methods: {
+    async delColumn(){
+      const resp =  await this.columnsStore.deleteColumn(this.column.id)
+      console.log("column id:",this.column.id)
+    },
     async createTask(title, status) {
       let orderNum = 1;
       if (this.filteredArrbyStatus.length > 0) {
@@ -214,5 +221,15 @@ export default {
   padding: 3px 7px;
   margin-bottom: 5px;
   border-radius: 8px;
+}
+#btn-DelColumn {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #4b69ff;
+  padding: 3px 7px;
+  background-color: #ffffff;
+  border-radius: 3px;
 }
 </style>

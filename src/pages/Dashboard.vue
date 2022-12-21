@@ -2,12 +2,9 @@
   <AppHeader />
   <div class="dashboard-wraper">
     <h1>Dashboard</h1>
-    <diV>
-      <button type="submit" @click="addNewColumn(title, columnsStore.columns.length)">
-        Create new column
-       
-      </button>
-      <textarea
+    <button type="button" @click="openAddColumn()">New Column</button>
+    <div class="createCol" v-if="viewAddColumn">
+      <textarea 
         v-model="title"
         name="textarea"
         id="textarea"
@@ -15,7 +12,10 @@
         rows="3"
         placeholder="Enter the title of your column"
       ></textarea>
-    </diV>
+      <button class="btnCreateColumn"  type="submit" @click="addNewColumn(title, columnsStore.columns.length)">
+        Create new column
+      </button>
+    </div>
 
     <div class="columns-wraper items-start">
       <!-- <AppColumna :columnArr="tasksStore.todoArr" :columnStatus="0" />
@@ -44,7 +44,7 @@ import AppColumna1 from "../components/AppColumna1.vue";
 export default {
   data() {
     return {
-      count: -1,
+      viewAddColumn: false,
     };
   },
   computed: {
@@ -67,6 +67,10 @@ export default {
         title,
         status
       );
+      this.columnsStore.fetchColumns();
+    },
+    openAddColumn(){
+      this.viewAddColumn = !this.viewAddColumn;
     },
   },
   components: {
@@ -78,7 +82,6 @@ export default {
   mounted() {
     this.tasksStore.fetchTasks();
     this.columnsStore.fetchColumns();
-    console.log("column 0 status");
   },
 };
 </script>
@@ -101,5 +104,19 @@ h1 {
 }
 .columns-wraper:last-child {
   margin-right: 0;
+}
+.createCol{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.createCol textarea {
+  outline: #292b31;
+  border-radius: 12px;
+  padding: 7px;
+  font-family: "Exo 2";
+  color: #24262c;
+  margin-right: 5px;
+  height: 66px;
 }
 </style>
