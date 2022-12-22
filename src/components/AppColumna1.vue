@@ -6,7 +6,6 @@
     @dragover.prevent
   >
     <div class="titleColumn-box">
-      <h2>order:{{ column.order }} / </h2> 
       <h2>{{ column.title }}</h2>
       <button id="btn-DelColumn" type="submit" @click="delColumn(); deleteColumnTasks()">
         Delete column
@@ -179,14 +178,33 @@ export default {
 </script>
 
 <style>
+@media (min-width: 481px){
+  .columna{
+    margin-right: 0px;
+    width: 352px;
+  }
+}
+@media (max-width: 480px){
+  .columna{
+    margin-right: 0px;
+    width: 76vw;
+    
+  }
+  .titleColumn-box{
+    flex-direction: column;
+  }
+  #btn-DelColumn {
+    width:fit-content;
+  }
+}
 .columna {
   background-color: #24262c;
   border-radius: 12px;
-  margin-right: 27px;
   padding: 16px;
-  min-width: 352px;
   margin-bottom: 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 .columna:active {
   border: 1px solid #ea70ff;

@@ -1,7 +1,8 @@
 <template>
   <AppHeader />
   <div class="dashboard-wraper">
-  <div class="dashboard-title-box flex">
+  <div class="content-wraper">
+    <div class="dashboard-title-box flex">
     <h1>Dashboard</h1>
     <button id="deleteAll-btn" type="submit" @click="deleteAll()">Delete All</button>
   </div>
@@ -30,9 +31,9 @@
       </div>
     </div>
   </div>
-  <AppFooter />
+    <AppFooter />
+  </div>
   <router-view />
-  <!--  esto del router view se puede quitar? -->
 </template>
 
 <script>
@@ -114,6 +115,16 @@ export default {
 </script>
 
 <style scoped>
+@media  (max-width: 480px){
+ .dashboard-wraper{
+  min-height: 100vh;
+ }
+}
+@media  (min-width: 481px){
+ .dashboard-wraper{
+  min-height: 87vh;
+ }
+}
 h1 {
   margin-bottom: 20px;
   font-size: 24px;
@@ -123,7 +134,11 @@ h1 {
   color: #ffffff;
   padding: 50px;
   width: 100vw;
-  min-height: calc(90vh - 80px);;
+  display: flex;
+  flex-direction: column;
+}
+.content-wraper{
+  flex: 1 0 auto;
 }
 .columns-wraper {
   display: flex;

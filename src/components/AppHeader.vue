@@ -1,8 +1,9 @@
 <template>
   <div
-    class="bg-zinc-700 text-zinc-300 flex flex-row justify-between items-center pt-[5px] pb-[5px]"
+    class="bg-zinc-700 text-zinc-300 flex flex-row justify-between items-center pt-[5px] pb-[5px] pr-[20px] "
+    id="header"
   >
-    <div class="ml-[20px] flex flex-row  justify-between w-[100%] md:w-auto items-center">
+    <div class="ml-[30px] flex flex-row  justify-between w-[100%] md:w-auto items-center">
       <div>
       <img src="../assets/images/art.png" alt="logo" class="w-[50px]" />
     </div>
@@ -86,3 +87,10 @@ export default {
   },
 };
 </script>
+<style>
+@media  (min-width: 481px) {
+  #header{
+  height: 13vh;
+}
+}
+</style>

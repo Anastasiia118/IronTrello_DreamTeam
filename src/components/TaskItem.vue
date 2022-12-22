@@ -4,11 +4,7 @@
     draggable="true"
     @dragstart="startDrag($event, task)"
   >
-    <p class="task-desc">{{ task.order }} . {{ task.title }}</p>
-    <!-- <div class="statusTask"> Status: 
-  <span v-if="task.status === 1"> Ongoing</span>
-  <span v-if="task.status === 0"> To Do</span>
-  <span v-if="task.status === 2"> Done</span></div> -->
+    <p class="task-desc">{{ task.title }}</p>
     <button id="delete-btn" type="submit" @click="deleteTask">Delete</button>
     <button id="edit-btn" type="sumbit" @click="viewEdits()">Edit Task</button>
     <div class="edit-box items-start" v-if="viewEdit === true">
@@ -79,9 +75,8 @@ export default {
   padding: 20px;
   margin-bottom: 14px;
 }
-.task-wrapper:hover{
+.task-wrapper:hover {
   border: 1px dashed #ea70ff;
-  
 }
 .statusTask {
   font-family: "Exo 2";
@@ -98,6 +93,7 @@ export default {
   font-weight: 500;
   font-size: 16px;
   line-height: 100%;
+  
 }
 #delete-btn {
   font-style: normal;
