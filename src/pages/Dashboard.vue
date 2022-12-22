@@ -26,7 +26,7 @@
       <!-- <AppColumna :columnArr="tasksStore.todoArr" :columnStatus="0" />
       <AppColumna :columnArr="tasksStore.ongoingArr" :columnStatus="1" />
       <AppColumna :columnArr="tasksStore.doneArr" :columnStatus="2" /> -->
-      <div v-for="(column, index) in columnsStore.columns">
+      <div v-for="(column, index) in columnsStore.columns" @drop="onDropCol($event, column)" @dragenter.prevent @dragover.prevent>
         <AppColumna1 :column="column" />
       </div>
     </div>
@@ -100,6 +100,32 @@ export default {
       const new_responce = await this.columnsStore.deleteAllColumns(this.userStore.user.id)
       console.log("this.columnsStore.user_id:", this.userStore.user.id)
     },
+    async onDropCol(event, finalCol) {
+      console.log("inicio ondropcol")
+      const clone = {...finalCol};
+      const initialColID = await event.dataTransfer.getData('initialColID');
+      const initialCol = this.columnsStore.columns.find((column) => column.id == initialColID);
+      const indexFinalCol = this.columnsStore.columns.indexOf(finalCol);
+      const indexInitialCol =  this.columnsStore.columns.indexOf(initialCol);
+
+      if (indexFinalCol < indexInitialCol) {
+        this.columnsStore.columns
+        .filter((column) => column.order >= finalCol.order && column.id != initialColID)
+        .forEach(async (column) => {
+          await this.columnsStore.updateColOrder(column.id,column.order+1)
+          
+        });
+      } else {
+        this.columnsStore.columns
+        .filter((column) => column.order <= finalCol.order && column.id != initialColID)
+        .forEach(async (column) => {
+          await this.columnsStore.updateColOrder(column.id,column.order-1)
+          
+        });
+      }
+      await this.columnsStore.updateColOrder(initialColID, clone.order);
+    },
+
   },
   components: {
     AppHeader,

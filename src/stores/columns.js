@@ -18,7 +18,7 @@ actions: {
 
         .select("*")
 
-        .order("id", {ascending: true});
+        .order("order", {ascending: true});
 
         this.columns = columns;
         console.log(this.columns)
