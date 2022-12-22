@@ -16,7 +16,7 @@
         rows="3"
         placeholder="Enter the title of your column"
       ></textarea>
-      <button id="btnCreateColumn"  type="submit" @click="addNewColumn(title, statusCount); openAddColumn()">
+      <button id="btnCreateColumn"  type="submit" @click="addNewColumn(title); openAddColumn()">
          Add new column
       </button>
     </div>
@@ -50,7 +50,6 @@ export default {
     return {
       viewAddColumn: false,
       textColumn: "",
-      statusCount: 0
     };
   },
   computed: {
@@ -63,20 +62,31 @@ export default {
       const response = await this.tasksStore.fetchTasks();
       this.tasks = this.tasksStore.tasks;
     },
-    async addNewColumn(title, status) {
+    async addNewColumn(title) {
       let orderNum = 1;
+      let statusCount = 0;
+      if(this.columnsStore.columns.length > 0){
+        let biggestStatus = this.columnsStore.columns.reduce((a,b) => {
+          if (a.status > b.status){
+            return a
+          }
+          return b
+        }).status;
+        statusCount = biggestStatus + 1;
+        console.log("biggest status:", biggestStatus)
+      }
       if (this.columnsStore.columns.length > 0) {
         orderNum = this.columnsStore.columns[this.columnsStore.columns.length-1].order + 1;
-      }
-      
+      } 
       const response = await this.columnsStore.createColumn(
         this.userStore.user.id,
         title,
-        status,
+        statusCount,
         orderNum
       );
-      this.statusCount +=1;
+      //this.statusCount +=1;
       this.columnsStore.fetchColumns();
+      //console.log("biggest status:", biggestStatus)
     },
     openAddColumn(){
       this.viewAddColumn = !this.viewAddColumn;
