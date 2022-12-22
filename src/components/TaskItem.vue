@@ -4,7 +4,7 @@
     draggable="true"
     @dragstart="startDrag($event, task)"
   >
-    <p class="task-desc">{{ task.order }} . {{ task.title }}</p>
+    <p class="task-desc">{{ task.title }}</p>
     <!-- <div class="statusTask"> Status: 
   <span v-if="task.status === 1"> Ongoing</span>
   <span v-if="task.status === 0"> To Do</span>

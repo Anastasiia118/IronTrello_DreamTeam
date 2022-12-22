@@ -4,14 +4,23 @@
     @drop="onDrop($event, this.column.status)"
     @dragenter.prevent
     @dragover.prevent
+   
   >
-    <div class="titleColumn-box">
-      <h2>order:{{ column.order }} / </h2> 
+    <div class="titleColumn-box"  draggable="true"
+    @dragstart="startDrag($event, this.column)">
       <h2>{{ column.title }}</h2>
-      <button id="btn-DelColumn" type="submit" @click="delColumn(); deleteColumnTasks()">
+      <button
+        id="btn-DelColumn"
+        type="submit"
+        @click="
+          delColumn();
+          deleteColumnTasks();
+        "
+      >
         Delete column
       </button>
     </div>
+
     <div
       v-for="(task, index) in filteredArrbyStatus"
       @drop="onDropList($event, task)"
@@ -22,6 +31,9 @@
       <img src="../assets/images/AddTaskIcon.svg" alt="Add Icon" />
       Add New Task
     </button>
+    <!-- <button type="submit" @click="moveRigth(this.column.order)" class="addTask">
+      MoveRigth
+    </button> -->
     <div v-if="toggleField" class="pull-down">
       <textarea
         v-model="title"
@@ -74,19 +86,27 @@ export default {
     };
   },
   methods: {
+    /*   moveRigth(movedColOrder) {
+this.columnsStore.columns.forEach((column,index) => {
+  if (index === movedColOrder + 1) {
+    await this.columnsStore
+  } 
+ })
+    }, */
     async delColumn() {
       const resp = await this.columnsStore.deleteColumn(this.column.id);
-    
-     this.columnsStore.columns.forEach(async (column, index) => {
-          
-          await this.columnsStore.updateColOrder(column.id, index)
-        } )
+
+      this.columnsStore.columns.forEach(async (column, index) => {
+        await this.columnsStore.updateColOrder(column.id, index);
+      });
       console.log("column id:", this.column.id);
-        const response3 = await this.columnsStore.fetchColumns();
-        console.log("columns:",this.columnsStore.columns)
+      const response3 = await this.columnsStore.fetchColumns();
+      console.log("columns:", this.columnsStore.columns);
     },
     async deleteColumnTasks() {
-      const response4 = await this.tasksStore.deleteColTasks(this.column.status);
+      const response4 = await this.tasksStore.deleteColTasks(
+        this.column.status
+      );
     },
     async createTask(title, status) {
       let orderNum = 1;
@@ -111,20 +131,31 @@ export default {
     deleteText() {
       this.title = "";
     },
+    startDrag(event, column) {
+      event.dataTransfer.dropEffect = "move";
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("initialColID", column.id);
+    },
     async onDrop(event, status) {
       const taskID = event.dataTransfer.getData(`taskID`);
       const task = this.tasksStore.tasks.find((task) => task.id == taskID);
       //console.log("es task de ondrop", taskID);
+      if (task === undefined) {
+        return;
+      }
       task.status = status;
       await this.tasksStore.updateStatus(taskID, task.status);
       //console.log("task de ondrop", task.status);
     },
     async onDropList(event, originTask) {
       const clone = { ...originTask };
-      /* const taskOrder = event.dataTransfer.getData(`taskOrder`); */
       const taskID = await event.dataTransfer.getData(`taskID`);
-      const task = await this.tasksStore.tasks.find((task) => task.id == taskID);
-      const indexOriginTask = await this.filteredArrbyStatus.indexOf(originTask);
+      const task = await this.tasksStore.tasks.find(
+        (task) => task.id == taskID
+      );
+      const indexOriginTask = await this.filteredArrbyStatus.indexOf(
+        originTask
+      );
       const indexTookTask = await this.filteredArrbyStatus.indexOf(task);
       if (indexOriginTask < indexTookTask) {
         this.filteredArrbyStatus
@@ -140,7 +171,7 @@ export default {
           });
       }
       await this.tasksStore.updateOrder(taskID, clone.order);
-     // const response2 = await this.tasksStore.fetchTasks(); 
+      // const response2 = await this.tasksStore.fetchTasks();
 
       /* const indexOriginTask = this.columnArr.indexOf(originTask);
         const indexTookTask = this.columnArr.indexOf(task);
@@ -253,7 +284,7 @@ export default {
   font-size: 14px;
   line-height: 100%;
   color: #4b69ff;
-  padding: 8px 7px; 
+  padding: 8px 7px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 7px;
   cursor: pointer;
