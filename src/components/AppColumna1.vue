@@ -1,6 +1,7 @@
 <template>
   <div
     class="columna"
+    id="col"
     @drop="onDrop($event, this.column.status)"
     @dragenter.prevent
     @dragover.prevent
@@ -210,16 +211,10 @@ this.columnsStore.columns.forEach((column,index) => {
 </script>
 
 <style>
-@media (min-width: 481px){
-  .columna{
-    margin-right: 0px;
-    width: 352px;
-  }
-}
 @media (max-width: 480px){
   .columna{
     margin-right: 0px;
-    width: 76vw;
+    width: 80vw;
     
   }
   .titleColumn-box{
@@ -308,5 +303,12 @@ this.columnsStore.columns.forEach((column,index) => {
   border-radius: 7px;
   cursor: pointer;
   height: fit-content;
+}
+@media (min-width: 481px){
+  .columna{
+    margin-right: 0px;
+    width: 342px;
+    margin-right: 20px;
+  }
 }
 </style>

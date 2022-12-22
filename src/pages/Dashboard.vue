@@ -142,13 +142,15 @@ export default {
 
 <style scoped>
 @media  (max-width: 480px){
- .dashboard-wraper{
+  .dashboard-wraper{
   min-height: 100vh;
+  padding: 20px;
  }
 }
 @media  (min-width: 481px){
  .dashboard-wraper{
   min-height: 87vh;
+  padding: 50px;
  }
 }
 h1 {
@@ -158,7 +160,7 @@ h1 {
 .dashboard-wraper {
   background-color: #292b31;
   color: #ffffff;
-  padding: 50px;
+ 
   width: 100vw;
   display: flex;
   flex-direction: column;

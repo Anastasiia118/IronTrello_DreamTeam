@@ -21,5 +21,11 @@ footer{
 .text-xs{
     color: white;
 }
-
+@media (max-width: 480px) {
+    footer{
+        height: 60px;
+       padding-bottom: 25px;
+       
+    }
+}
 </style>

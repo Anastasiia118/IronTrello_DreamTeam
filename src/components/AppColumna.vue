@@ -1,4 +1,4 @@
-<template>
+/* <template>
   <div
     class="columna"
     @drop="onDrop($event, columnStatus)"
@@ -147,7 +147,7 @@ export default {
 </script>
 
 <style>
-.columna {
+/* .columna {
   background-color: #24262c;
   border-radius: 12px;
   margin-right: 27px;
@@ -204,5 +204,5 @@ export default {
   padding: 3px 7px;
   margin-bottom: 5px;
   border-radius: 8px;
-}
+} */
 </style>
