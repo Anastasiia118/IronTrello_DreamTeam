@@ -29,8 +29,8 @@
         <AppColumna1 :column="column" />
       </div>
     </div>
-    <AppFooter />
   </div>
+  <AppFooter />
   <router-view />
   <!--  esto del router view se puede quitar? -->
 </template>
@@ -113,7 +113,7 @@ h1 {
   color: #ffffff;
   padding: 50px;
   width: 100vw;
-  min-height: 100vh;
+  min-height: calc(90vh - 80px);;
 }
 .columns-wraper {
   display: flex;
