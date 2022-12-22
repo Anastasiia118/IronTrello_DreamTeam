@@ -63,7 +63,7 @@ export default {
       this.tasks = this.tasksStore.tasks;
     },
     async addNewColumn(title) {
-      let orderNum = 1;
+      let orderNum = 0;
       let statusCount = 0;
       if(this.columnsStore.columns.length > 0){
         let biggestStatus = this.columnsStore.columns.reduce((a,b) => {

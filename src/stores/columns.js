@@ -41,9 +41,8 @@ actions: {
         .from("columns")
         .delete()
         .match({'id': columnId})
-       /*  this.columns.forEach((column, index) => {
-          column.status = index
-        } ) */
+
+        
        // console.log("voy a hacer fetch en delete")
         const response2 = await this.fetchColumns();
       },
@@ -65,6 +64,14 @@ actions: {
          //console.log("voy a fetchtasks")
          const response2 = await this.fetchColumns();  
        },
+       async updateColOrder(columnID, newOrder) {
+        const {error} = await supabase
+        .from("columns")
+        .update({'order' : newOrder})
+        .match({'id':columnID})
+
+        const response2 = await this.fetchColumns()
+       }
 }
 
 

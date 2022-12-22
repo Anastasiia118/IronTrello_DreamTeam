@@ -6,7 +6,7 @@
     @dragover.prevent
   >
     <div class="titleColumn-box">
-      <h2>status-{{ column.status }} / </h2> 
+      <h2>order:{{ column.order }} / </h2> 
       <h2>{{ column.title }}</h2>
       <button id="btn-DelColumn" type="submit" @click="delColumn(); deleteColumnTasks()">
         Delete column
@@ -76,6 +76,11 @@ export default {
   methods: {
     async delColumn() {
       const resp = await this.columnsStore.deleteColumn(this.column.id);
+    
+     this.columnsStore.columns.forEach(async (column, index) => {
+          
+          await this.columnsStore.updateColOrder(column.id, index)
+        } )
       console.log("column id:", this.column.id);
         const response3 = await this.columnsStore.fetchColumns();
         console.log("columns:",this.columnsStore.columns)
@@ -182,6 +187,9 @@ export default {
   min-width: 352px;
   margin-bottom: 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.columna:active {
+  border: 1px solid #ea70ff;
 }
 .columna h2 {
   color: #ea70ff;
