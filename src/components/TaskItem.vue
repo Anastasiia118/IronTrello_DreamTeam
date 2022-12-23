@@ -74,6 +74,8 @@ export default {
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 14px;
+  
+
 }
 .task-wrapper:hover {
   border: 1px dashed #ea70ff;
@@ -92,7 +94,11 @@ export default {
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 100%;
+  line-height: 150%;
+  width: 290px;
+  padding-right: 20px;
+  word-wrap: break-word;
+  
   
 }
 #delete-btn {
@@ -129,7 +135,8 @@ export default {
   padding: 7px;
   font-family: "Exo 2";
   color: #24262c;
-  margin-right: 5px;
+  margin-right: 20px;
   height: 66px;
+  width: 265px;
 }
 </style>
