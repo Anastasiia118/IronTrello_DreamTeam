@@ -68,6 +68,7 @@ export default {
 };
 </script>
 <style>
+
 .task-wrapper {
   max-width: 320px;
   background-color: rgba(255, 255, 255, 0.06);
@@ -95,10 +96,9 @@ export default {
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
-  width: 290px;
-  padding-right: 20px;
-  word-wrap: break-word;
+  width: 90%;
   
+  word-wrap: break-word;
   
 }
 #delete-btn {
